@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack --mode development ./project_chippy/frontend/src/index.js --output ./project_chippy/frontend/static/frontend/main.js",
+    "dev": "webpack --mode development --watch ./project_chippy/frontend/src/index.js --output ./project_chippy/frontend/static/frontend/main.js",
     "build": "webpack --mode production ./project_chippy/frontend/src/index.js --output ./project_chippy/frontend/static/frontend/main.js"
   },
   "repository": {
