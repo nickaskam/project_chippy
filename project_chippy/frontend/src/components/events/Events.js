@@ -20,46 +20,48 @@ export class Events extends Component {
     minute: "2-digit",
   });
 
+  dateFormatterDateOnly = new Intl.DateTimeFormat("en-US", {
+    year: "numeric",
+    month: "short",
+    day: "2-digit",
+  });
+
+  dateFormatterTimeOnly = new Intl.DateTimeFormat("en-US", {
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+
   render() {
     return (
       <Fragment>
         <h2>Events List</h2>
-        <table>
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Event</th>
-              <th>Description</th>
-              <th>Start Time</th>
-              <th>End Time</th>
-              <th>Category</th>
-              <th>Complete?</th>
-              <th>Created At:</th>
-              <th />
-            </tr>
-          </thead>
-          <tbody>
-            {this.props.events.map((event) => (
-              <tr key={event.id}>
-                <td>{event.id}</td>
-                <td>{event.name}</td>
-                <td>{event.description}</td>
-                <td>
-                  {this.dateFormatter.format(Date.parse(event.start_time))}
-                </td>
-                <td>{this.dateFormatter.format(Date.parse(event.end_time))}</td>
-                <td>{event.category}</td>
-                <td>{event.complete.toString()}</td>
-                <td>
-                  {this.dateFormatter.format(Date.parse(event.created_at))}
-                </td>
-                <td>
-                  <button>Delete</button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <div className="grid">
+          {this.props.events.map((event) => (
+            <div key={event.id}>
+              <h4>
+                {event.name} - {event.category} -{" "}
+                {this.dateFormatterDateOnly.format(
+                  Date.parse(event.start_time)
+                )}
+              </h4>
+              <p>
+                {this.dateFormatterTimeOnly.format(
+                  Date.parse(event.start_time)
+                )}{" "}
+                -{" "}
+                {this.dateFormatterTimeOnly.format(Date.parse(event.end_time))}
+              </p>
+              <p>{event.description}</p>
+              <p>
+                Complete? {event.complete.toString()}. Created at:{" "}
+                {this.dateFormatter.format(Date.parse(event.created_at))}
+              </p>
+              <div id="eventsDeleteButtonDiv">
+                <button id="deleteButton">Delete</button>
+              </div>
+            </div>
+          ))}
+        </div>
       </Fragment>
     );
   }
