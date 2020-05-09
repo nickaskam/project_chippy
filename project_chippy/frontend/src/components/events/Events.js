@@ -12,6 +12,14 @@ export class Events extends Component {
     this.props.getEvents();
   }
 
+  dateFormatter = new Intl.DateTimeFormat("en-US", {
+    year: "numeric",
+    month: "short",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+
   render() {
     return (
       <Fragment>
@@ -36,11 +44,15 @@ export class Events extends Component {
                 <td>{event.id}</td>
                 <td>{event.name}</td>
                 <td>{event.description}</td>
-                <td>{event.start_time.toLocaleString()}</td>
-                <td>{event.end_time}</td>
+                <td>
+                  {this.dateFormatter.format(Date.parse(event.start_time))}
+                </td>
+                <td>{this.dateFormatter.format(Date.parse(event.end_time))}</td>
                 <td>{event.category}</td>
                 <td>{event.complete.toString()}</td>
-                <td>{event.created_at}</td>
+                <td>
+                  {this.dateFormatter.format(Date.parse(event.created_at))}
+                </td>
                 <td>
                   <button>Delete</button>
                 </td>
