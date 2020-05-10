@@ -34,37 +34,33 @@ export class Events extends Component {
   render() {
     return (
       <Fragment>
-        <div className="container">
-          <h2>Events List</h2>
-          <div className="grid">
-            {this.props.events.map((event) => (
-              <div key={event.id}>
-                <h4>
-                  {event.name} - {event.category} -{" "}
-                  {this.dateFormatterDateOnly.format(
-                    Date.parse(event.start_time)
-                  )}
-                </h4>
-                <p>
-                  {this.dateFormatterTimeOnly.format(
-                    Date.parse(event.start_time)
-                  )}{" "}
-                  -{" "}
-                  {this.dateFormatterTimeOnly.format(
-                    Date.parse(event.end_time)
-                  )}
-                </p>
-                <p>{event.description}</p>
-                <p>
-                  Complete? {event.complete.toString()}. Created at:{" "}
-                  {this.dateFormatter.format(Date.parse(event.created_at))}
-                </p>
-                <div id="eventsDeleteButtonDiv">
-                  <button id="deleteButton">Delete</button>
-                </div>
+        <h2>Events List</h2>
+        <div className="grid">
+          {this.props.events.map((event) => (
+            <div key={event.id}>
+              <h4>
+                {event.name} - {event.category} -{" "}
+                {this.dateFormatterDateOnly.format(
+                  Date.parse(event.start_time)
+                )}
+              </h4>
+              <p>
+                {this.dateFormatterTimeOnly.format(
+                  Date.parse(event.start_time)
+                )}{" "}
+                -{" "}
+                {this.dateFormatterTimeOnly.format(Date.parse(event.end_time))}
+              </p>
+              <p>{event.description}</p>
+              <p>
+                Complete? {event.complete.toString()}. Created at:{" "}
+                {this.dateFormatter.format(Date.parse(event.created_at))}
+              </p>
+              <div id="eventsDeleteButtonDiv">
+                <button id="deleteButton">Delete</button>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
       </Fragment>
     );

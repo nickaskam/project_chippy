@@ -4,7 +4,19 @@ export class Header extends Component {
   render() {
     return (
       <div>
-        <h1>Project Chippy</h1>
+        <nav>
+          <ul>
+            <li>
+              <a href="#">Project Chippy</a>
+            </li>
+            <li>
+              <a href="#">Add New Event</a>
+            </li>
+            <li>
+              <a href="#">Events List</a>
+            </li>
+          </ul>
+        </nav>
       </div>
     );
   }

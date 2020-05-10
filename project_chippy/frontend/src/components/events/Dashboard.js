@@ -5,8 +5,10 @@ import Events from "./Events";
 export default function Dashboard() {
   return (
     <Fragment>
-      <Form />
-      <Events />
+      <div className="container">
+        <Form />
+        <Events />
+      </div>
     </Fragment>
   );
 }
