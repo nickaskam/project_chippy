@@ -49,14 +49,22 @@ nav {
 }
 
 nav ul {
-  width: 100%;
   list-style: none;
-  margin: 0;
-  padding: 0;
 }
 
 nav > ul > li {
-  width: 33%;
+  width: 25%;
   float: left;
   text-align: center;
+}
+
+/* Add a background color on mouse-over */
+nav a:hover {
+  background-color: #000;
+  color: white;
+}
+
+/* Style the current/active link */
+nav a.active {
+  background-color: #4caf50;
 }

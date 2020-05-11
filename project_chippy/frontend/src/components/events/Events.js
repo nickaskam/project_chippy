@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { getEvents } from "../../actions/events";
+import { getEvents, deleteEvent } from "../../actions/events";
 
 export class Events extends Component {
   static propTypes = {
@@ -61,7 +61,12 @@ export class Events extends Component {
                   {this.dateFormatter.format(Date.parse(event.created_at))}
                 </p>
                 <div id="eventsDeleteButtonDiv">
-                  <button id="deleteButton">Delete</button>
+                  <button
+                    onClick={this.props.deleteEvent.bind(this, event.id)}
+                    id="deleteButton"
+                  >
+                    Delete
+                  </button>
                 </div>
               </div>
             ))}
@@ -75,4 +80,4 @@ const mapStateToProps = (state) => ({
   events: state.events.events,
 });
 
-export default connect(mapStateToProps, { getEvents })(Events);
+export default connect(mapStateToProps, { getEvents, deleteEvent })(Events);
