@@ -1,4 +1,8 @@
-import { GET_EVENTS, DELETE_EVENT } from "../actions/types.js";
+import {
+  GET_EVENTS,
+  DELETE_EVENT,
+  SORT_EVENTS_STARTTIME,
+} from "../actions/types.js";
 
 const initialState = {
   events: [],
@@ -16,6 +20,15 @@ export default function (state = initialState, action) {
         ...state,
         events: state.events.filter((event) => event.id !== action.payload),
       };
+
+    case SORT_EVENTS_STARTTIME:
+      return {
+        ...state,
+        events: state.events
+          .slice()
+          .sort((a, b) => (a.start_time > b.start_time ? 1 : -1)),
+      };
+
     default:
       return state;
   }
