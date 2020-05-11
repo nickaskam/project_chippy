@@ -36,31 +36,35 @@ export class Events extends Component {
       <Fragment>
         <h2>Events List</h2>
         <div className="grid">
-          {this.props.events.map((event) => (
-            <div key={event.id}>
-              <h4>
-                {event.name} - {event.category} -{" "}
-                {this.dateFormatterDateOnly.format(
-                  Date.parse(event.start_time)
-                )}
-              </h4>
-              <p>
-                {this.dateFormatterTimeOnly.format(
-                  Date.parse(event.start_time)
-                )}{" "}
-                -{" "}
-                {this.dateFormatterTimeOnly.format(Date.parse(event.end_time))}
-              </p>
-              <p>{event.description}</p>
-              <p>
-                Complete? {event.complete.toString()}. Created at:{" "}
-                {this.dateFormatter.format(Date.parse(event.created_at))}
-              </p>
-              <div id="eventsDeleteButtonDiv">
-                <button id="deleteButton">Delete</button>
+          {this.props.events
+            .sort((a, b) => (a.start_time > b.start_time ? 1 : -1))
+            .map((event, index) => (
+              <div key={`event-list-key ${index}`}>
+                <h4>
+                  {event.name} - {event.category} -{" "}
+                  {this.dateFormatterDateOnly.format(
+                    Date.parse(event.start_time)
+                  )}
+                </h4>
+                <p>
+                  {this.dateFormatterTimeOnly.format(
+                    Date.parse(event.start_time)
+                  )}{" "}
+                  -{" "}
+                  {this.dateFormatterTimeOnly.format(
+                    Date.parse(event.end_time)
+                  )}
+                </p>
+                <p>{event.description}</p>
+                <p>
+                  Complete? {event.complete.toString()}. Created at:{" "}
+                  {this.dateFormatter.format(Date.parse(event.created_at))}
+                </p>
+                <div id="eventsDeleteButtonDiv">
+                  <button id="deleteButton">Delete</button>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
         </div>
       </Fragment>
     );
