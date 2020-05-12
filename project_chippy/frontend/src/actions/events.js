@@ -1,6 +1,11 @@
 import axios from "axios";
 
-import { GET_EVENTS, DELETE_EVENT, SORT_EVENTS_STARTTIME } from "./types";
+import {
+  GET_EVENTS,
+  DELETE_EVENT,
+  SORT_EVENTS_STARTTIME,
+  ADD_EVENT,
+} from "./types";
 
 // GET EVENTS
 export const getEvents = () => (dispatch) => {
@@ -35,6 +40,19 @@ export const sortEventsStartTime = () => (dispatch) => {
     .then((res) => {
       dispatch({
         type: SORT_EVENTS_STARTTIME,
+        payload: res.data,
+      });
+    })
+    .catch((err) => console.log(err));
+};
+
+//ADD EVENT
+export const addEvent = (event) => (dispatch) => {
+  axios
+    .post("/api/events/", event)
+    .then((res) => {
+      dispatch({
+        type: ADD_EVENT,
         payload: res.data,
       });
     })

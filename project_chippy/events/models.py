@@ -11,5 +11,5 @@ class Event(models.Model):
     end_time = models.DateTimeField(null=True)
     category = models.CharField(
         blank=True, choices=CategoryType.choices, max_length=10)
-    complete = models.BooleanField(default=False)
+    complete = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
