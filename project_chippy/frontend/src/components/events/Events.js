@@ -10,12 +10,16 @@ import {
 export class Events extends Component {
   static propTypes = {
     events: PropTypes.array.isRequired,
+    getEvents: PropTypes.func.isRequired,
+    deleteEvent: PropTypes.func.isRequired,
+    sortEventsStartTime: PropTypes.func.isRequired,
   };
 
   componentDidMount() {
     this.props.getEvents();
   }
 
+  //show date and time from datetime field
   dateFormatter = new Intl.DateTimeFormat("en-US", {
     year: "numeric",
     month: "short",
@@ -24,12 +28,14 @@ export class Events extends Component {
     minute: "2-digit",
   });
 
+  //show date only from datetime field
   dateFormatterDateOnly = new Intl.DateTimeFormat("en-US", {
     year: "numeric",
     month: "short",
     day: "2-digit",
   });
 
+  //show time only from datetime field
   dateFormatterTimeOnly = new Intl.DateTimeFormat("en-US", {
     hour: "2-digit",
     minute: "2-digit",
@@ -40,6 +46,7 @@ export class Events extends Component {
       <Fragment>
         <div>
           <h2>Events List</h2>
+          {/* sort events */}
           <button
             onClick={this.props.sortEventsStartTime}
             id="sortStartTimeButton"
@@ -47,6 +54,7 @@ export class Events extends Component {
             Sort by start time
           </button>
         </div>
+        {/* bring in events and grid */}
         <div className="grid">
           {this.props.events.map((event, index) => (
             <div key={`event-list-key ${index}`}>
