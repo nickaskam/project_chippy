@@ -3,7 +3,8 @@ import axios from "axios";
 import {
   GET_EVENTS,
   DELETE_EVENT,
-  SORT_EVENTS_STARTTIME,
+  SORT_EVENTS_STARTTIME_ASCENDING,
+  SORT_EVENTS_STARTTIME_DESCENDING,
   ADD_EVENT,
 } from "./types";
 
@@ -33,13 +34,26 @@ export const deleteEvent = (id) => (dispatch) => {
     .catch((err) => console.log(err));
 };
 
-//SORT EVENT
-export const sortEventsStartTime = () => (dispatch) => {
+//SORT EVENT START TIME ASCENDING
+export const sortEventsStartTimeAscending = () => (dispatch) => {
   axios
     .get("/api/events/")
     .then((res) => {
       dispatch({
-        type: SORT_EVENTS_STARTTIME,
+        type: SORT_EVENTS_STARTTIME_ASCENDING,
+        payload: res.data,
+      });
+    })
+    .catch((err) => console.log(err));
+};
+
+//SORT EVENT START TIME DESCENDING
+export const sortEventsStartTimeDescending = () => (dispatch) => {
+  axios
+    .get("/api/events/")
+    .then((res) => {
+      dispatch({
+        type: SORT_EVENTS_STARTTIME_DESCENDING,
         payload: res.data,
       });
     })
