@@ -6,6 +6,7 @@ import {
   deleteEvent,
   sortEventsStartTimeAscending,
   sortEventsStartTimeDescending,
+  showTodaysEvents,
 } from "../../actions/events";
 
 export class Events extends Component {
@@ -19,6 +20,7 @@ export class Events extends Component {
     deleteEvent: PropTypes.func.isRequired,
     sortEventsStartTimeAscending: PropTypes.func.isRequired,
     sortEventsStartTimeDescending: PropTypes.func.isRequired,
+    showTodaysEvents: PropTypes.func.isRequired,
   };
 
   componentDidMount() {
@@ -47,45 +49,30 @@ export class Events extends Component {
     minute: "2-digit",
   });
 
-  handleEventsStartTimeAscendingClick() {
-    this.props.sortEventsStartTimeAscending;
-    this.setState({ showSortStartTimeAscending: false });
-  }
-
-  handleEventsStartTimeDescendingClick() {
-    this.props.sortEventsStartTimeDescending;
-    this.setState({ showSortStartTimeAscending: true });
-  }
-
   render() {
-    const { sortEventsStartTimeAscending } = this.state;
-    let button;
-    if (sortEventsStartTimeAscending === true) {
-      button = (
-        <SortEventsStartTimeAscendingButton
-          onClick={this.handleEventsStartTimeAscendingClick}
-        />
-      );
-    } else {
-      button = (
-        <SortEventsStartTimeDescendingButton
-          onClick={this.handleEventsStartTimeDescendingClick}
-        />
-      );
-    }
-
     return (
       <Fragment>
         <div>
           <h2>Events List</h2>
           {/* sort events */}
-          {/* <button
+          <button
             onClick={this.props.sortEventsStartTimeAscending}
-            id="sortStartTimeButton"
+            className="sortStartTimeButton"
           >
             Sort by newest start time
-          </button> */}
-          {button}
+          </button>
+          <button
+            onClick={this.props.sortEventsStartTimeDescending}
+            className="sortStartTimeButton"
+          >
+            Sort by oldest start time
+          </button>
+          <button
+            onClick={this.props.showTodaysEvents}
+            className="sortStartTimeButton"
+          >
+            Show Today's events
+          </button>
         </div>
         {/* bring in events and grid */}
         <div className="grid">
@@ -129,19 +116,12 @@ const mapStateToProps = (state) => ({
   events: state.events.events,
 });
 
-function SortEventsStartTimeAscendingButton(props) {
-  return <button onClick={props.onClick}>Sort Events Ascending</button>;
-}
-
-function SortEventsStartTimeDescendingButton(props) {
-  return <button onClick={props.onClick}>Sort Events Descending</button>;
-}
-
 const EventList = connect(mapStateToProps, {
   getEvents,
   deleteEvent,
   sortEventsStartTimeAscending,
   sortEventsStartTimeDescending,
+  showTodaysEvents,
 })(Events);
 
 export default EventList;
