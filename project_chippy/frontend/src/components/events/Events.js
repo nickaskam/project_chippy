@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 import {
   getEvents,
   deleteEvent,
@@ -67,12 +68,9 @@ export class Events extends Component {
           >
             Sort by oldest start time
           </button>
-          <button
-            onClick={this.props.showTodaysEvents}
-            className="sortStartTimeButton"
-          >
-            Show Today's events
-          </button>
+          <Link to="/form">
+            <button className="sortStartTimeButton">Create new Event</button>
+          </Link>
         </div>
         {/* bring in events and grid */}
         <div className="grid">
@@ -93,7 +91,7 @@ export class Events extends Component {
               </p>
               <p>{event.description}</p>
               <p>
-                Complete? {event.complete.toString()}. Created at:{" "}
+                Complete? {event.complete}. Created at:{" "}
                 {this.dateFormatter.format(Date.parse(event.created_at))}
               </p>
               <div id="eventsDeleteButtonDiv">

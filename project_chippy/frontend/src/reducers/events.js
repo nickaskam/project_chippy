@@ -30,14 +30,12 @@ export default function (state = initialState, action) {
       start.setDate(start.getDate() - 1);
       let end = new Date();
       end.setDate(end.getDate + 1);
+      console.log(start);
       return {
         ...state,
         events: state.events
           .slice()
-          .filter(
-            (a) =>
-              new Date(a.start_time) > start && new Date(a.start_time) < end
-          ),
+          .filter((a) => a.name !== "sorting testing"),
       };
     case SORT_EVENTS_STARTTIME_ASCENDING:
       return {

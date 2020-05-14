@@ -6,7 +6,6 @@ export default function Dashboard() {
   return (
     <Fragment>
       <div className="container">
-        <Form />
         <Events />
       </div>
     </Fragment>

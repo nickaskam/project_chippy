@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 export class Header extends Component {
   render() {
@@ -10,7 +11,7 @@ export class Header extends Component {
               <a href="#">Project Chippy</a>
             </li>
             <li>
-              <a href="#">Add New Event</a>
+              <Link to="/form">Add New Event</Link>
             </li>
             <li>
               <a href="#">Events List</a>
