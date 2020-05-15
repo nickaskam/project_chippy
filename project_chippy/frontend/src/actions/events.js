@@ -6,7 +6,6 @@ import {
   SORT_EVENTS_STARTTIME_ASCENDING,
   SORT_EVENTS_STARTTIME_DESCENDING,
   ADD_EVENT,
-  SHOW_TODAYS_EVENTS,
 } from "./types";
 
 // GET EVENTS
@@ -55,19 +54,6 @@ export const sortEventsStartTimeDescending = () => (dispatch) => {
     .then((res) => {
       dispatch({
         type: SORT_EVENTS_STARTTIME_DESCENDING,
-        payload: res.data,
-      });
-    })
-    .catch((err) => console.log(err));
-};
-
-//SORT EVENTS BY DATE
-export const showTodaysEvents = () => (dispatch) => {
-  axios
-    .get("/api/events/")
-    .then((res) => {
-      dispatch({
-        type: SHOW_TODAYS_EVENTS,
         payload: res.data,
       });
     })

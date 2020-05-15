@@ -4,7 +4,6 @@ import {
   ADD_EVENT,
   SORT_EVENTS_STARTTIME_ASCENDING,
   SORT_EVENTS_STARTTIME_DESCENDING,
-  SHOW_TODAYS_EVENTS,
 } from "../actions/types.js";
 
 const initialState = {
@@ -24,18 +23,6 @@ export default function (state = initialState, action) {
         events: state.events
           .slice()
           .filter((event) => event.id !== action.payload),
-      };
-    case SHOW_TODAYS_EVENTS:
-      let start = new Date();
-      start.setDate(start.getDate() - 1);
-      let end = new Date();
-      end.setDate(end.getDate + 1);
-      console.log(start);
-      return {
-        ...state,
-        events: state.events
-          .slice()
-          .filter((a) => a.name !== "sorting testing"),
       };
     case SORT_EVENTS_STARTTIME_ASCENDING:
       return {

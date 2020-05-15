@@ -30,14 +30,22 @@ export class Events extends Component {
     this.props.getEvents();
   }
 
+  //filter for events that are happening today
   eventToday = (event) => {
+    //start date
     let start = new Date();
+    //setting date to midnight (morning)
     start.setHours(0, 0, 0, 0);
+    //start.setDate(start.getDate() - 100);
     console.log(start);
+    //end date
     let end = new Date();
+    //setting date to midnight (evening)
     end.setHours(24, 0, 0, 0);
+    //end.setDate(end.getDate() + 100);
     console.log(end);
     console.log(new Date(event.start_time));
+    //checking to see if the event.start_time is occuring today
     if (
       new Date(event.start_time) > start &&
       new Date(event.start_time) < end
