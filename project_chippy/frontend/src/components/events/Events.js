@@ -13,6 +13,8 @@ import {
 export class Events extends Component {
   state = {
     showSortStartTimeAscending: true,
+    sortType: "asc",
+    filtered: false,
   };
 
   static propTypes = {
@@ -27,6 +29,24 @@ export class Events extends Component {
   componentDidMount() {
     this.props.getEvents();
   }
+
+  eventToday = (event) => {
+    let start = new Date();
+    start.setHours(0, 0, 0, 0);
+    console.log(start);
+    let end = new Date();
+    end.setHours(24, 0, 0, 0);
+    console.log(end);
+    console.log(new Date(event.start_time));
+    if (
+      new Date(event.start_time) > start &&
+      new Date(event.start_time) < end
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  };
 
   //show date and time from datetime field
   dateFormatter = new Intl.DateTimeFormat("en-US", {
@@ -74,8 +94,8 @@ export class Events extends Component {
         </div>
         {/* bring in events and grid */}
         <div className="grid">
-          {this.props.events.map((event, index) => (
-            <div key={`event-list-key ${index}`}>
+          {this.props.events.filter(this.eventToday).map((event) => (
+            <div key={event.id}>
               <h4>
                 {event.name} - {event.category} -{" "}
                 {this.dateFormatterDateOnly.format(
