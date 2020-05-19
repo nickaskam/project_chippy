@@ -7,6 +7,8 @@ import {
   deleteEvent,
   sortEventsStartTimeAscending,
   sortEventsStartTimeDescending,
+  showWorkEvents,
+  showTodaysEvents,
 } from "../../actions/events";
 
 export class Events extends Component {
@@ -23,41 +25,13 @@ export class Events extends Component {
     deleteEvent: PropTypes.func.isRequired,
     sortEventsStartTimeAscending: PropTypes.func.isRequired,
     sortEventsStartTimeDescending: PropTypes.func.isRequired,
+    showTodaysEvents: PropTypes.func.isRequired,
+    showWorkEvents: PropTypes.func.isRequired,
   };
 
   componentDidMount() {
     this.props.getEvents();
   }
-
-  //filter for events that are happening today
-  eventToday = (event) => {
-    //start date
-    let start = new Date();
-    //setting date to midnight (morning)
-    start.setHours(0, 0, 0, 0);
-    start.setDate(start.getDate() - 100);
-    console.log(start);
-    //end date
-    let end = new Date();
-    //setting date to midnight (evening)
-    end.setHours(24, 0, 0, 0);
-    end.setDate(end.getDate() + 100);
-    console.log(end);
-    console.log(new Date(event.start_time));
-    //checking to see if the event.start_time is occuring today
-    if (
-      new Date(event.start_time) > start &&
-      new Date(event.start_time) < end
-    ) {
-      return true;
-    } else {
-      return false;
-    }
-  };
-
-  sortEventsByStartTime = () => {
-    this.props.events.sort((a, b) => a.start_time - b.start_time);
-  };
 
   //show date and time from datetime field
   dateFormatter = new Intl.DateTimeFormat("en-US", {
@@ -100,18 +74,27 @@ export class Events extends Component {
             Sort by oldest start time
           </button>
           <button
-            onClick={this.sortEventsByStartTime.bind(this)}
+            onClick={this.props.showTodaysEvents}
             className="sortStartTimeButton"
           >
-            Sort in browser
+            Show Today's Events
           </button>
-          <Link to="/form">
-            <button className="sortStartTimeButton">Create new Event</button>
-          </Link>
+          <button
+            onClick={this.props.showWorkEvents}
+            className="sortStartTimeButton"
+          >
+            Show Work Events
+          </button>
+          <button
+            onClick={this.props.getEvents}
+            className="sortStartTimeButton"
+          >
+            Show All Events
+          </button>
         </div>
         {/* bring in events and grid */}
         <div className="grid">
-          {this.props.events.filter(this.eventToday).map((event) => (
+          {this.props.events.map((event) => (
             <div key={event.id}>
               <h4>
                 {event.name} - {event.category} -{" "}
@@ -156,6 +139,8 @@ const EventList = connect(mapStateToProps, {
   deleteEvent,
   sortEventsStartTimeAscending,
   sortEventsStartTimeDescending,
+  showTodaysEvents,
+  showWorkEvents,
 })(Events);
 
 export default EventList;

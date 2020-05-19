@@ -6,6 +6,8 @@ import {
   SORT_EVENTS_STARTTIME_ASCENDING,
   SORT_EVENTS_STARTTIME_DESCENDING,
   ADD_EVENT,
+  SHOW_TODAYS_EVENTS,
+  SHOW_WORK_EVENTS,
 } from "./types";
 
 // GET EVENTS
@@ -54,6 +56,32 @@ export const sortEventsStartTimeDescending = () => (dispatch) => {
     .then((res) => {
       dispatch({
         type: SORT_EVENTS_STARTTIME_DESCENDING,
+        payload: res.data,
+      });
+    })
+    .catch((err) => console.log(err));
+};
+
+//SHOW TODAY'S EVENTS
+export const showTodaysEvents = () => (dispatch) => {
+  axios
+    .get("/api/events/")
+    .then((res) => {
+      dispatch({
+        type: SHOW_TODAYS_EVENTS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => console.log(err));
+};
+
+//SHOW WORK EVENTS
+export const showWorkEvents = () => (dispatch) => {
+  axios
+    .get("/api/events/")
+    .then((res) => {
+      dispatch({
+        type: SHOW_WORK_EVENTS,
         payload: res.data,
       });
     })
