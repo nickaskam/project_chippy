@@ -6,6 +6,7 @@ import {
   sortEventsStartTimeDescending,
   showWorkEvents,
   showTodaysEvents,
+  getEvents,
 } from "../../actions/events";
 
 export class Buttons extends React.Component {
@@ -14,6 +15,7 @@ export class Buttons extends React.Component {
     sortEventsStartTimeDescending: PropTypes.func.isRequired,
     showTodaysEvents: PropTypes.func.isRequired,
     showWorkEvents: PropTypes.func.isRequired,
+    getEvents: PropTypes.func.isRequired,
   };
   render() {
     return (
@@ -59,6 +61,7 @@ const ButtonList = connect(mapStateToProps, {
   sortEventsStartTimeDescending,
   showTodaysEvents,
   showWorkEvents,
+  getEvents,
 })(Buttons);
 
 export default ButtonList;

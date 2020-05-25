@@ -3,16 +3,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { getEvents, deleteEvent } from "../../actions/events";
-import ShorthandList from "./ShorthandList";
 import Buttons from "./Buttons";
-
-function MainList() {
-  return (
-    <h4>
-      {event.name} - {event.category} - {event.start_time}
-    </h4>
-  );
-}
 
 export class Events extends Component {
   state = {
@@ -60,7 +51,12 @@ export class Events extends Component {
         <div className="grid">
           {this.props.events.map((event) => (
             <div key={event.id}>
-              <MainList event={event} />
+              <h4>
+                {event.name} - {event.category} -{" "}
+                {this.dateFormatterDateOnly.format(
+                  Date.parse(event.start_time)
+                )}
+              </h4>
               <p>
                 {this.dateFormatterTimeOnly.format(
                   Date.parse(event.start_time)
