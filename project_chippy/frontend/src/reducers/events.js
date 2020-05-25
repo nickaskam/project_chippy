@@ -43,7 +43,9 @@ export default function (state = initialState, action) {
     case SHOW_WORK_EVENTS:
       return {
         ...state,
-        events: state.events.filter((event) => event.category === "WORK"),
+        events: state.events
+          .slice()
+          .filter((event) => event.category === "WORK"),
       };
     case SHOW_TODAYS_EVENTS:
       //setting date to midnight (morning)
@@ -54,11 +56,13 @@ export default function (state = initialState, action) {
       end.setHours(24, 0, 0, 0);
       return {
         ...state,
-        events: state.events.filter(
-          (event) =>
-            new Date(event.start_time) > start &&
-            new Date(event.start_time) < end
-        ),
+        events: state.events
+          .slice()
+          .filter(
+            (event) =>
+              new Date(event.start_time) > start &&
+              new Date(event.start_time) < end
+          ),
       };
     case ADD_EVENT:
       return {
