@@ -7,6 +7,7 @@ import {
   Redirect,
 } from "react-router-dom";
 
+import HomePage from "./events/HomePage";
 import Dashboard from "./events/Dashboard";
 import Form from "./events/Form";
 import Header from "./layout/Header";
@@ -23,7 +24,8 @@ class App extends Component {
             <Header />
             <div>
               <Switch>
-                <Route exact path="/" component={Dashboard} />
+                <Route exact path="/" component={HomePage} />
+                <Route exact path="/events" component={Dashboard} />
                 <Route exact path="/form" component={Form} />
               </Switch>
             </div>

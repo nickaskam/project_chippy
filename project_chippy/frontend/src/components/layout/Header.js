@@ -14,7 +14,7 @@ export class Header extends Component {
               <Link to="/form">Add New Event</Link>
             </li>
             <li>
-              <a href="#">Events List</a>
+              <Link to="/events">Events List</Link>
             </li>
           </ul>
         </nav>
