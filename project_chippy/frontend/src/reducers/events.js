@@ -22,9 +22,7 @@ export default function (state = initialState, action) {
     case DELETE_EVENT:
       return {
         ...state,
-        events: state.events
-          .slice()
-          .filter((event) => event.id !== action.payload),
+        events: state.events.filter((event) => event.id !== action.payload),
       };
     case SORT_EVENTS_STARTTIME_ASCENDING:
       return {

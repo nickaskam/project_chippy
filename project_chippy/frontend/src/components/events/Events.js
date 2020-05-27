@@ -55,26 +55,45 @@ function RenderEvents({ events }) {
           {events.map((event) => {
             return (
               <div key={event.id}>
+                {/* Overview of event */}
                 <h4>
                   {event.name} - {event.category} -{" "}
-                  {/* {this.dateFormatterDateOnly.format(Date.parse(event.start_time))} */}
+                  {new Intl.DateTimeFormat("en-US", {
+                    year: "numeric",
+                    month: "short",
+                    day: "2-digit",
+                  }).format(new Date(Date.parse(event.start_time)))}
                 </h4>
+                {/* Start to end times only */}
                 <p>
-                  {/* {this.dateFormatterTimeOnly.format(Date.parse(event.start_time))} -{" "}
-            {this.dateFormatterTimeOnly.format(Date.parse(event.end_time))} */}
+                  {new Intl.DateTimeFormat("en-US", {
+                    hour: "2-digit",
+                    minute: "2-digit",
+                  }).format(new Date(Date.parse(event.start_time)))}{" "}
+                  -{" "}
+                  {new Intl.DateTimeFormat("en-US", {
+                    hour: "2-digit",
+                    minute: "2-digit",
+                  }).format(new Date(Date.parse(event.end_time)))}
                 </p>
                 <p>{event.description}</p>
+                <p>Complete? {event.complete}.</p>
                 <p>
-                  Complete? {event.complete}. Created at:{" "}
-                  {/* {this.dateFormatter.format(Date.parse(event.created_at))} */}
+                  Created at:{" "}
+                  {new Intl.DateTimeFormat("en-US", {
+                    year: "numeric",
+                    month: "short",
+                    day: "2-digit",
+                    hour: "2-digit",
+                    minute: "2-digit",
+                  }).format(new Date(Date.parse(event.created_at)))}
                 </p>
                 <div id="eventsDeleteButtonDiv">
-                  {/* <button
-                    onClick={this.deleteEvent(event.id)}
-                    id="deleteButton"
-                  >
-                    Delete
-                  </button> */}
+                  {
+                    <button onClick={deleteEvent(event.id)} id="deleteButton">
+                      Delete
+                    </button>
+                  }
                 </div>
               </div>
             );
