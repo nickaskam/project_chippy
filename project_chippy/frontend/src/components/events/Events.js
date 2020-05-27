@@ -6,6 +6,10 @@ import { getEvents, deleteEvent } from "../../actions/events";
 import Buttons from "./Buttons";
 
 export class Events extends Component {
+  constructor(props) {
+    super(props);
+  }
+
   state = {
     showSortStartTimeAscending: true,
   };

@@ -8,6 +8,7 @@ import Dashboard from "../events/Dashboard";
 import Form from "../events/Form";
 import Header from "./Header";
 import { getEvents } from "../../actions/events";
+import EventList from "../events/ShorthandList";
 
 class Main extends Component {
   static propTypes = {
@@ -32,7 +33,13 @@ class Main extends Component {
               render={(props) => <Dashboard {...props} />}
             />
             } />
+            <Route
+              exact
+              path="/shortlist"
+              render={() => <EventList events={this.props.events} />}
+            />
             <Route exact path="/form" component={Form} />
+            <Redirect to="/" />
           </Switch>
         </div>
       </Fragment>
@@ -40,8 +47,10 @@ class Main extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  events: state.events.events,
-});
+const mapStateToProps = (state) => {
+  return {
+    events: state.events.events,
+  };
+};
 
 export default connect(mapStateToProps, { getEvents })(Main);

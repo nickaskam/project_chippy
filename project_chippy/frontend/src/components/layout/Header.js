@@ -16,6 +16,9 @@ export class Header extends Component {
             <li>
               <Link to="/events">Events List</Link>
             </li>
+            <li>
+              <Link to="/shortlist">Short List</Link>
+            </li>
           </ul>
         </nav>
       </div>
