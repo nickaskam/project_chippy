@@ -2,7 +2,7 @@ import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import { getEvents, deleteEvent } from "../../actions/events";
+import { deleteEvent } from "../../actions/events";
 import Buttons from "./Buttons";
 
 export class Events extends Component {
@@ -10,19 +10,9 @@ export class Events extends Component {
     super(props);
   }
 
-  state = {
-    showSortStartTimeAscending: true,
-  };
-
   static propTypes = {
-    events: PropTypes.array.isRequired,
-    getEvents: PropTypes.func.isRequired,
     deleteEvent: PropTypes.func.isRequired,
   };
-
-  componentDidMount() {
-    this.props.getEvents();
-  }
 
   //show date and time from datetime field
   dateFormatter = new Intl.DateTimeFormat("en-US", {
@@ -49,44 +39,50 @@ export class Events extends Component {
   render() {
     return (
       <Fragment>
-        <Buttons />
-        {/* <ShorthandList events={this.props.events} /> */}
-        {/* bring in events and grid */}
-        <div className="grid">
-          {this.props.events.map((event) => (
-            <div key={event.id}>
-              <h4>
-                {event.name} - {event.category} -{" "}
-                {this.dateFormatterDateOnly.format(
-                  Date.parse(event.start_time)
-                )}
-              </h4>
-              <p>
-                {this.dateFormatterTimeOnly.format(
-                  Date.parse(event.start_time)
-                )}{" "}
-                -{" "}
-                {this.dateFormatterTimeOnly.format(Date.parse(event.end_time))}
-              </p>
-              <p>{event.description}</p>
-              <p>
-                Complete? {event.complete}. Created at:{" "}
-                {this.dateFormatter.format(Date.parse(event.created_at))}
-              </p>
-              <div id="eventsDeleteButtonDiv">
-                <button
-                  onClick={this.props.deleteEvent.bind(this, event.id)}
-                  id="deleteButton"
-                >
-                  Delete
-                </button>
-              </div>
-            </div>
-          ))}
-        </div>
+        {<Buttons />}
+        <h2>Events</h2>
+        <RenderEvents events={this.props.events} />
       </Fragment>
     );
   }
+}
+
+function RenderEvents({ events }) {
+  return (
+    <div>
+      {events && (
+        <div className="grid">
+          {events.map((event) => {
+            return (
+              <div key={event.id}>
+                <h4>
+                  {event.name} - {event.category} -{" "}
+                  {/* {this.dateFormatterDateOnly.format(Date.parse(event.start_time))} */}
+                </h4>
+                <p>
+                  {/* {this.dateFormatterTimeOnly.format(Date.parse(event.start_time))} -{" "}
+            {this.dateFormatterTimeOnly.format(Date.parse(event.end_time))} */}
+                </p>
+                <p>{event.description}</p>
+                <p>
+                  Complete? {event.complete}. Created at:{" "}
+                  {/* {this.dateFormatter.format(Date.parse(event.created_at))} */}
+                </p>
+                <div id="eventsDeleteButtonDiv">
+                  {/* <button
+                    onClick={this.deleteEvent(event.id)}
+                    id="deleteButton"
+                  >
+                    Delete
+                  </button> */}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      )}
+    </div>
+  );
 }
 
 const mapStateToProps = (state) => ({
@@ -94,7 +90,6 @@ const mapStateToProps = (state) => ({
 });
 
 const EventList = connect(mapStateToProps, {
-  getEvents,
   deleteEvent,
 })(Events);
 

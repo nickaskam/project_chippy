@@ -20,7 +20,6 @@ export class Buttons extends React.Component {
   render() {
     return (
       <div>
-        <h2>Events List</h2>
         {/* sort events */}
         <button
           onClick={this.props.sortEventsStartTimeAscending}
