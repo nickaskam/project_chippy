@@ -6,17 +6,11 @@ function EventList(props) {
   });
 
   function RenderEvent({ event }) {
-    return (
-      <div>
-        <ul>
-          <li>{event.name}</li>
-        </ul>
-      </div>
-    );
+    return <li>{event.name}</li>;
   }
 
   function RenderEvents() {
-    return <div>{eventlist}</div>;
+    return <ul>{eventlist}</ul>;
   }
 
   return <RenderEvents />;
