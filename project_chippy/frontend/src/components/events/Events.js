@@ -8,11 +8,11 @@ import EventCards from "./EventCards";
 export class Events extends Component {
   constructor(props) {
     super(props);
-    this.sortByDateAsc = this.sortByDateAsc.bind(this);
-    this.sortByDateDesc = this.sortByDateDesc.bind(this);
     this.state = {
       events: [],
     };
+    this.sortByDateAsc = this.sortByDateAsc.bind(this);
+    this.sortByDateDesc = this.sortByDateDesc.bind(this);
   }
 
   componentDidMount() {
@@ -33,12 +33,30 @@ export class Events extends Component {
     deleteEvent: PropTypes.func.isRequired,
   };
 
-  sortByDateAsc() {
-    this.props.events.sort((a, b) => (a.start_time > b.start_time ? 1 : -1));
-  }
+  sortByDateAsc = () => {
+    var sortedEvents = this.state.events.sort((a, b) => {
+      if (a.start_time > b.start_time) {
+        return 1;
+      } else if (a.start_time < b.start_time) {
+        return -1;
+      }
+      return 0;
+    });
+
+    this.setState({ events: sortedEvents });
+  };
 
   sortByDateDesc() {
-    this.props.events.sort((a, b) => (b.start_time > a.start_time ? 1 : -1));
+    var sortedEvents = this.state.events.sort((a, b) => {
+      if (b.start_time > a.start_time) {
+        return 1;
+      } else if (b.start_time < a.start_time) {
+        return -1;
+      }
+      return 0;
+    });
+
+    this.setState({ events: sortedEvents });
   }
 
   render() {
