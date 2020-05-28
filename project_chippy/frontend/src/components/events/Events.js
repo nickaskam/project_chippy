@@ -10,6 +10,23 @@ export class Events extends Component {
     super(props);
     this.sortByDateAsc = this.sortByDateAsc.bind(this);
     this.sortByDateDesc = this.sortByDateDesc.bind(this);
+    this.state = {
+      events: [],
+    };
+  }
+
+  componentDidMount() {
+    this.setState({
+      events: this.props.events,
+    });
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps !== this.props) {
+      this.setState({
+        events: this.props.events,
+      });
+    }
   }
 
   static propTypes = {
@@ -33,7 +50,7 @@ export class Events extends Component {
         <button onClick={this.sortByDateDesc}>Desc Date</button>
         <h2>Events</h2>
         <div className="grid">
-          {this.props.events.map((event) => (
+          {this.state.events.map((event) => (
             <EventCards key={event.id} event={event} />
           ))}
         </div>
