@@ -2,7 +2,6 @@ import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { deleteEvent } from "../../actions/events";
-import Buttons from "./Buttons";
 import EventCards from "./EventCards";
 
 export class Events extends Component {
@@ -13,6 +12,9 @@ export class Events extends Component {
     };
     this.sortByDateAsc = this.sortByDateAsc.bind(this);
     this.sortByDateDesc = this.sortByDateDesc.bind(this);
+    this.showWorkEvents = this.showWorkEvents.bind(this);
+    this.showTodaysEvents = this.showTodaysEvents.bind(this);
+    this.showAllEvents = this.showAllEvents.bind(this);
   }
 
   componentDidMount() {
@@ -46,7 +48,7 @@ export class Events extends Component {
     this.setState({ events: sortedEvents });
   };
 
-  sortByDateDesc() {
+  sortByDateDesc = () => {
     var sortedEvents = this.state.events.sort((a, b) => {
       if (b.start_time > a.start_time) {
         return 1;
@@ -57,15 +59,54 @@ export class Events extends Component {
     });
 
     this.setState({ events: sortedEvents });
-  }
+  };
+
+  showWorkEvents = () => {
+    var filteredEvents = this.state.events.slice().filter((event) => {
+      if (event.category === "WORK") {
+        return true;
+      }
+      return false;
+    });
+
+    this.setState({ events: filteredEvents });
+  };
+
+  showTodaysEvents = () => {
+    //setting date to midnight (morning)
+    const start = new Date();
+    start.setHours(0, 0, 0, 0);
+
+    //setting date to midnight (evening)
+    const end = new Date();
+    end.setHours(24, 0, 0, 0);
+
+    var filteredEvents = this.state.events.slice().filter((event) => {
+      if (
+        new Date(event.start_time) > start &&
+        new Date(event.start_time) < end
+      ) {
+        return true;
+      }
+      return false;
+    });
+
+    this.setState({ events: filteredEvents });
+  };
+
+  showAllEvents = () => {
+    this.setState({ events: this.props.events });
+  };
 
   render() {
     return (
       <Fragment>
-        <Buttons />
         <SortButtons />
         <button onClick={this.sortByDateAsc}>Asc Date</button>
         <button onClick={this.sortByDateDesc}>Desc Date</button>
+        <button onClick={this.showWorkEvents}>Show Work Events</button>
+        <button onClick={this.showTodaysEvents}>Show Today's Events</button>
+        <button onClick={this.showAllEvents}>Show All Events</button>
         <h2>Events</h2>
         <div className="grid">
           {this.state.events.map((event) => (
