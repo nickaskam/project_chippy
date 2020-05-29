@@ -12,6 +12,12 @@ h4 {
   grid-gap: 1rem;
 }
 
+.gridList {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 1rem;
+}
+
 .grid > div {
   background: #f0f0f0;
   padding: 1.5rem;
