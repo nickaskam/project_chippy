@@ -28,6 +28,21 @@ export class EventCards extends Component {
     this.props.editEvent(event);
   };
 
+  onEditUn = (e) => {
+    e.preventDefault();
+    const event = {
+      id: this.props.event.id,
+      name: this.props.event.name,
+      description: this.props.event.name,
+      start_time: this.props.event.start_time,
+      end_time: this.props.event.end_time,
+      category: this.props.event.category,
+      complete: "No",
+      created_at: this.props.event.created_at,
+    };
+    this.props.editEvent(event);
+  };
+
   static propTypes = {
     deleteEvent: PropTypes.func.isRequired,
     editEvent: PropTypes.func.isRequired,
@@ -79,8 +94,6 @@ export class EventCards extends Component {
         </p>
         {/* Shows event description */}
         <p>{this.props.event.description}</p>
-        {/* Shows if event is complete */}
-        <p>Complete? {this.props.event.complete}.</p>
         {/* Shows when event was created */}
         <p>
           Created at:{" "}
@@ -95,6 +108,14 @@ export class EventCards extends Component {
             }
           >
             Mark Complete
+          </button>
+          <button
+            onClick={this.onEditUn}
+            className={
+              this.props.event.complete === "No" ? "hide" : "completeButton"
+            }
+          >
+            Mark Incomplete
           </button>
           <button
             onClick={() => this.props.deleteEvent(this.props.event.id)}
