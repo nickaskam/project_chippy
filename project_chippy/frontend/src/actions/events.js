@@ -42,9 +42,9 @@ export const addEvent = (event) => (dispatch) => {
 };
 
 // EDIT EVENT
-export const editEvent = (id) => (dispatch) => {
+export const editEvent = (event) => (dispatch) => {
   axios
-    .put(`/api/events/${id}/`)
+    .put(`/api/events/${event.id}/`, event)
     .then((res) => {
       dispatch({
         type: EDIT_EVENT,

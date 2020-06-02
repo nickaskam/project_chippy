@@ -29,7 +29,7 @@ export default function (state = initialState, action) {
     case EDIT_EVENT:
       return {
         ...state,
-        events: insertIntoArray(state.events, index, { complete: "yes" }),
+        events: state.events,
       };
     default:
       return state;

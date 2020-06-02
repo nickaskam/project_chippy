@@ -4,6 +4,30 @@ import PropTypes from "prop-types";
 import { deleteEvent, editEvent } from "../../actions/events";
 
 export class EventCards extends Component {
+  state = {
+    name: "",
+    description: "",
+    start_time: "",
+    end_time: "",
+    category: "WORK",
+    complete: "No",
+  };
+
+  onEdit = (e) => {
+    e.preventDefault();
+    const event = {
+      id: this.props.event.id,
+      name: this.props.event.name,
+      description: this.props.event.name,
+      start_time: this.props.event.start_time,
+      end_time: this.props.event.end_time,
+      category: this.props.event.category,
+      complete: "Yes",
+      created_at: this.props.event.created_at,
+    };
+    this.props.editEvent(event);
+  };
+
   static propTypes = {
     deleteEvent: PropTypes.func.isRequired,
     editEvent: PropTypes.func.isRequired,
@@ -65,7 +89,7 @@ export class EventCards extends Component {
         {/* Complete and Delete Button */}
         <div>
           <button
-            onClick={() => this.props.editEvent(this.props.event.id)}
+            onClick={this.onEdit}
             className={
               this.props.event.complete === "Yes" ? "hide" : "completeButton"
             }
