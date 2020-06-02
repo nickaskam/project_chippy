@@ -29,7 +29,10 @@ export default function (state = initialState, action) {
     case EDIT_EVENT:
       return {
         ...state,
-        events: state.events,
+        events: [
+          ...state.events.filter((event) => event.id !== action.payload.id),
+          action.payload,
+        ],
       };
     default:
       return state;

@@ -1,7 +1,5 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
-import PropTypes from "prop-types";
-import { deleteEvent } from "../../actions/events";
 import EventCards from "./EventCards";
 
 export class Events extends Component {
@@ -30,10 +28,6 @@ export class Events extends Component {
       });
     }
   }
-
-  static propTypes = {
-    deleteEvent: PropTypes.func.isRequired,
-  };
 
   sortByDateAsc = () => {
     var sortedEvents = this.state.events.sort((a, b) => {
@@ -101,7 +95,6 @@ export class Events extends Component {
   render() {
     return (
       <Fragment>
-        <SortButtons />
         <button onClick={this.sortByDateAsc}>Asc Date</button>
         <button onClick={this.sortByDateDesc}>Desc Date</button>
         <button onClick={this.showWorkEvents}>Show Work Events</button>
@@ -118,64 +111,8 @@ export class Events extends Component {
   }
 }
 
-class SortButtons extends Component {
-  state = {
-    sortAscStartTime: false,
-    sortAscEventName: false,
-    fieldSort: "",
-  };
-
-  toggleAscendingStartTime() {
-    this.setState({
-      sortAscStartTime: !this.state.sortAscStartTime,
-    });
-  }
-
-  toggleAscendingEvent() {
-    this.setState({
-      sortAscEventName: !this.state.sortAscEventName,
-    });
-  }
-
-  toggleFieldSort = (field) => {
-    this.setState({
-      fieldSort: field,
-    });
-    if (field == "start_time") {
-      this.toggleAscendingStartTime();
-    } else if (field == "name") {
-      this.toggleAscendingEvent();
-    } else {
-    }
-  };
-
-  render() {
-    return (
-      <div>
-        <button onClick={this.toggleFieldSort.bind(this, "start_time")}>
-          Change sort by start time
-        </button>
-        <button onClick={this.toggleFieldSort.bind(this, "name")}>
-          Change sort by event name
-        </button>
-        <p>
-          Sort Ascending Start Time: {this.state.sortAscStartTime.toString()}
-        </p>
-        <p>
-          Sort Ascending Event Name: {this.state.sortAscEventName.toString()}
-        </p>
-        <p>Field Sort: {this.state.fieldSort}</p>
-      </div>
-    );
-  }
-}
-
 const mapStateToProps = (state) => ({
   events: state.events.events,
 });
 
-const EventList = connect(mapStateToProps, {
-  deleteEvent,
-})(Events);
-
-export default EventList;
+export default connect(mapStateToProps)(Events);
