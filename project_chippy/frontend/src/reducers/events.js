@@ -1,4 +1,9 @@
-import { GET_EVENTS, DELETE_EVENT, ADD_EVENT } from "../actions/types.js";
+import {
+  GET_EVENTS,
+  DELETE_EVENT,
+  ADD_EVENT,
+  EDIT_EVENT,
+} from "../actions/types.js";
 
 const initialState = {
   events: [],
@@ -21,7 +26,11 @@ export default function (state = initialState, action) {
         ...state,
         events: [...state.events, action.payload],
       };
-
+    case EDIT_EVENT:
+      return {
+        ...state,
+        events: insertIntoArray(state.events, index, { complete: "yes" }),
+      };
     default:
       return state;
   }

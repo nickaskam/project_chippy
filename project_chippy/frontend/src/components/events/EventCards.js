@@ -1,6 +1,14 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { deleteEvent, editEvent } from "../../actions/events";
 
 export class EventCards extends Component {
+  static propTypes = {
+    deleteEvent: PropTypes.func.isRequired,
+    editEvent: PropTypes.func.isRequired,
+  };
+
   //show date and time from datetime field
   dateFormatter = new Intl.DateTimeFormat("en-US", {
     year: "numeric",
@@ -54,20 +62,30 @@ export class EventCards extends Component {
           Created at:{" "}
           {this.dateFormatter.format(Date.parse(this.props.event.created_at))}
         </p>
-        {/* Delete Button */}
-        <div id="eventsDeleteButtonDiv">
-          {
-            <button
-              onClick={() => this.props.deleteEvent(event.id)}
-              className="deleteButton"
-            >
-              Delete
-            </button>
-          }
+        {/* Complete and Delete Button */}
+        <div>
+          <button
+            onClick={() => this.props.editEvent(this.props.event.id)}
+            className={
+              this.props.event.complete === "Yes" ? "hide" : "completeButton"
+            }
+          >
+            Mark Complete
+          </button>
+          <button
+            onClick={() => this.props.deleteEvent(this.props.event.id)}
+            className="deleteButton"
+          >
+            Delete
+          </button>
         </div>
       </div>
     );
   }
 }
 
-export default EventCards;
+const mapStateToProps = (state) => ({
+  events: state.events.events,
+});
+
+export default connect(mapStateToProps, { deleteEvent, editEvent })(EventCards);

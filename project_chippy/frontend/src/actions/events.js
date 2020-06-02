@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { GET_EVENTS, DELETE_EVENT, ADD_EVENT } from "./types";
+import { GET_EVENTS, DELETE_EVENT, ADD_EVENT, EDIT_EVENT } from "./types";
 
 // GET EVENTS
 export const getEvents = () => (dispatch) => {
@@ -35,6 +35,19 @@ export const addEvent = (event) => (dispatch) => {
     .then((res) => {
       dispatch({
         type: ADD_EVENT,
+        payload: res.data,
+      });
+    })
+    .catch((err) => console.log(err));
+};
+
+// EDIT EVENT
+export const editEvent = (id) => (dispatch) => {
+  axios
+    .put(`/api/events/${id}/`)
+    .then((res) => {
+      dispatch({
+        type: EDIT_EVENT,
         payload: res.data,
       });
     })
