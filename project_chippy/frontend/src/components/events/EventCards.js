@@ -27,7 +27,9 @@ export class EventCards extends Component {
     return (
       <div>
         {/* Overview of event */}
-        <h4>
+        <h4
+          className={this.props.event.complete === "Yes" ? "text-strike" : null}
+        >
           {this.props.event.name} - {this.props.event.category} -{" "}
           {this.dateFormatterDateOnly.format(
             Date.parse(this.props.event.start_time)

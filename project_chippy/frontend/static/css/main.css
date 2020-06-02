@@ -95,3 +95,7 @@ nav a:hover {
 nav a.active {
   background-color: #4caf50;
 }
+
+.text-strike {
+  text-decoration: line-through;
+}
