@@ -13,7 +13,7 @@ export class EventCards extends Component {
     complete: "No",
   };
 
-  onEdit = (e) => {
+  completeEvent = (e) => {
     e.preventDefault();
     const event = {
       id: this.props.event.id,
@@ -28,7 +28,7 @@ export class EventCards extends Component {
     this.props.editEvent(event);
   };
 
-  onEditUn = (e) => {
+  uncompleteEvent = (e) => {
     e.preventDefault();
     const event = {
       id: this.props.event.id,
@@ -94,15 +94,10 @@ export class EventCards extends Component {
         </p>
         {/* Shows event description */}
         <p>{this.props.event.description}</p>
-        {/* Shows when event was created */}
-        <p>
-          Created at:{" "}
-          {this.dateFormatter.format(Date.parse(this.props.event.created_at))}
-        </p>
         {/* Complete and Delete Button */}
         <div>
           <button
-            onClick={this.onEdit}
+            onClick={this.completeEvent}
             className={
               this.props.event.complete === "Yes" ? "hide" : "completeButton"
             }
@@ -110,7 +105,7 @@ export class EventCards extends Component {
             Mark Complete
           </button>
           <button
-            onClick={this.onEditUn}
+            onClick={this.uncompleteEvent}
             className={
               this.props.event.complete === "No" ? "hide" : "completeButton"
             }

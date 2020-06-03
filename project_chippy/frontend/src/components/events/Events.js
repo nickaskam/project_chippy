@@ -66,6 +66,17 @@ export class Events extends Component {
     this.setState({ events: filteredEvents });
   };
 
+  showUncompleteEvents = () => {
+    var filteredEvents = this.state.events.slice().filter((event) => {
+      if (event.complete === "No") {
+        return true;
+      }
+      return false;
+    });
+
+    this.setState({ events: filteredEvents });
+  };
+
   showTodaysEvents = () => {
     //setting date to midnight (morning)
     const start = new Date();
@@ -99,6 +110,9 @@ export class Events extends Component {
         <button onClick={this.sortByDateDesc}>Desc Date</button>
         <button onClick={this.showWorkEvents}>Show Work Events</button>
         <button onClick={this.showTodaysEvents}>Show Today's Events</button>
+        <button onClick={this.showUncompleteEvents}>
+          Show Uncomplete Events
+        </button>
         <button onClick={this.showAllEvents}>Show All Events</button>
         <h2>Events</h2>
         <div className="grid">
