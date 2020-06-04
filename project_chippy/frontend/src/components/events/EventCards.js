@@ -77,7 +77,20 @@ export class EventCards extends Component {
         <h4
           className={this.props.event.complete === "Yes" ? "text-strike" : null}
         >
-          {this.props.event.name} - {this.props.event.category} -{" "}
+          <span
+            className={
+              this.props.event.category === "WORK"
+                ? "categoryOne"
+                : this.props.event.category === "FUN"
+                ? "categoryTwo"
+                : this.props.event.category === "SCHOOL"
+                ? "categoryThree"
+                : ""
+            }
+          >
+            {this.props.event.name}
+          </span>{" "}
+          -{" "}
           {this.dateFormatterDateOnly.format(
             Date.parse(this.props.event.start_time)
           )}

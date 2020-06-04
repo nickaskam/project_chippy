@@ -1,5 +1,6 @@
-import React, { Fragment } from "react";
+import React from "react";
 import EventCards from "./EventCards";
+import EventFooter from "../layout/EventFooter";
 
 //showing the event name in a unordered list
 function EventList(props) {
@@ -101,6 +102,7 @@ function EventList(props) {
           <h2>Future Events</h2>
           <div>{eventListFuture}</div>
         </div>
+        <EventFooter />
       </div>
     );
   }

@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import EventCards from "./EventCards";
+import EventFooter from "../layout/EventFooter";
 
 export class Events extends Component {
   constructor(props) {
@@ -120,6 +121,7 @@ export class Events extends Component {
             <EventCards key={event.id} event={event} />
           ))}
         </div>
+        <EventFooter />
       </Fragment>
     );
   }

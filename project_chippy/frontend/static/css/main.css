@@ -1,5 +1,13 @@
-h4 {
+.categoryOne {
   color: red;
+}
+
+.categoryTwo {
+  color: green;
+}
+
+.categoryThree {
+  color: blue;
 }
 
 .container {
