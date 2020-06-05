@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import EventCards from "./EventCards";
 import EventFooter from "../layout/EventFooter";
 
@@ -81,29 +81,31 @@ function EventList(props) {
 
   function RenderEvents() {
     return (
-      <div className="gridList">
-        <div>
-          <h2>Past Events</h2>
-          <div>{eventListPast}</div>
-        </div>
-        <div>
-          <h2>
-            Today's Events (
-            {new Intl.DateTimeFormat("en-US", {
-              year: "numeric",
-              month: "short",
-              day: "2-digit",
-            }).format(new Date())}
-            )
-          </h2>
-          <div>{eventListToday}</div>
-        </div>
-        <div>
-          <h2>Future Events</h2>
-          <div>{eventListFuture}</div>
+      <Fragment>
+        <div className="gridList">
+          <div>
+            <h2>Past Events</h2>
+            <div>{eventListPast}</div>
+          </div>
+          <div>
+            <h2>
+              Today's Events (
+              {new Intl.DateTimeFormat("en-US", {
+                year: "numeric",
+                month: "short",
+                day: "2-digit",
+              }).format(new Date())}
+              )
+            </h2>
+            <div>{eventListToday}</div>
+          </div>
+          <div>
+            <h2>Future Events</h2>
+            <div>{eventListFuture}</div>
+          </div>
         </div>
         <EventFooter />
-      </div>
+      </Fragment>
     );
   }
 
