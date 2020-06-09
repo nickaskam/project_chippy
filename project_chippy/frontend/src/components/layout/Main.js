@@ -11,6 +11,7 @@ import { getEvents } from "../../actions/events";
 import EventList from "../events/ShorthandList";
 import Login from "../accounts/Login";
 import Register from "../accounts/Register";
+import PrivateRoute from "../common/PrivateRoute";
 
 class Main extends Component {
   static propTypes = {
@@ -29,7 +30,7 @@ class Main extends Component {
         <div>
           <Switch>
             <Route exact path="/" component={HomePage} />
-            <Route
+            <PrivateRoute
               exact
               path="/events"
               render={(props) => <Dashboard {...props} />}
