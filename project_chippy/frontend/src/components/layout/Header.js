@@ -40,8 +40,10 @@ export class Header extends Component {
           {/* A list of the events only showing the name */}
           <Link to="/shortlist">Day by Day</Link>
         </li>
-
         <li>
+          <span>
+            <strong>{user ? `Welcome ${user.username} ` : ""}</strong>
+          </span>
           <button onClick={this.props.logout}>Logout</button>
         </li>
       </Fragment>
