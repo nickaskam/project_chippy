@@ -23,6 +23,14 @@ export class Header extends Component {
               {/* A list of the events only showing the name */}
               <Link to="/shortlist">Day by Day</Link>
             </li>
+            <li>
+              {/* All of the events in detail */}
+              <Link to="/register">Register</Link>
+            </li>
+            <li>
+              {/* All of the events in detail */}
+              <Link to="/login">Login</Link>
+            </li>
           </ul>
         </nav>
       </div>

@@ -9,6 +9,8 @@ import Form from "../events/Form";
 import Header from "./Header";
 import { getEvents } from "../../actions/events";
 import EventList from "../events/ShorthandList";
+import Login from "../accounts/Login";
+import Register from "../accounts/Register";
 
 class Main extends Component {
   static propTypes = {
@@ -39,6 +41,8 @@ class Main extends Component {
               render={() => <EventList events={this.props.events} />}
             />
             <Route exact path="/form" component={Form} />
+            <Route exact path="/register" component={Register} />
+            <Route exact path="/login" component={Login} />
             <Redirect to="/" />
           </Switch>
         </div>
