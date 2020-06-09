@@ -30,7 +30,7 @@ class Main extends Component {
         <div>
           <Switch>
             <Route exact path="/" component={HomePage} />
-            <PrivateRoute
+            <Route
               exact
               path="/events"
               render={(props) => <Dashboard {...props} />}
@@ -41,7 +41,7 @@ class Main extends Component {
               path="/shortlist"
               render={() => <EventList events={this.props.events} />}
             />
-            <Route exact path="/form" component={Form} />
+            <PrivateRoute exact path="/form" component={Form} />
             <Route exact path="/register" component={Register} />
             <Route exact path="/login" component={Login} />
             <Redirect to="/" />
