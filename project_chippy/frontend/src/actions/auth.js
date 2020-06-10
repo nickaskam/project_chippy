@@ -95,6 +95,7 @@ export const logout = () => (dispatch, getState) => {
     .then((res) => {
       dispatch({
         type: LOGOUT_SUCCESS,
+        payload: res.data,
       });
     })
     .catch((err) => {

@@ -2,6 +2,8 @@ import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import EventCards from "./EventCards";
 import EventFooter from "../layout/EventFooter";
+import PropTypes from "prop-types";
+import { Redirect } from "react-router-dom";
 
 export class Events extends Component {
   constructor(props) {
@@ -15,6 +17,10 @@ export class Events extends Component {
     this.showTodaysEvents = this.showTodaysEvents.bind(this);
     this.showAllEvents = this.showAllEvents.bind(this);
   }
+
+  static propTypes = {
+    isAuthenticated: PropTypes.bool,
+  };
 
   componentDidMount() {
     this.setState({
@@ -105,6 +111,10 @@ export class Events extends Component {
   };
 
   render() {
+    if (!this.props.isAuthenticated) {
+      return <Redirect to="/" />;
+    }
+
     return (
       <Fragment>
         <button onClick={this.sortByDateAsc}>Asc Date</button>
@@ -129,6 +139,7 @@ export class Events extends Component {
 
 const mapStateToProps = (state) => ({
   events: state.events.events,
+  isAuthenticated: state.auth.isAuthenticated,
 });
 
 export default connect(mapStateToProps)(Events);
