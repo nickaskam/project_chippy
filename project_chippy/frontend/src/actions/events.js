@@ -1,11 +1,12 @@
 import axios from "axios";
+import { tokenConfig } from "./auth";
 
 import { GET_EVENTS, DELETE_EVENT, ADD_EVENT, EDIT_EVENT } from "./types";
 
 // GET EVENTS
-export const getEvents = () => (dispatch) => {
+export const getEvents = () => (dispatch, getState) => {
   axios
-    .get("/api/events/")
+    .get("/api/events/", tokenConfig(getState))
     .then((res) => {
       dispatch({
         type: GET_EVENTS,
@@ -16,9 +17,9 @@ export const getEvents = () => (dispatch) => {
 };
 
 // DELETE EVENT
-export const deleteEvent = (id) => (dispatch) => {
+export const deleteEvent = (id) => (dispatch, getState) => {
   axios
-    .delete(`/api/events/${id}/`)
+    .delete(`/api/events/${id}/`, tokenConfig(getState))
     .then((res) => {
       dispatch({
         type: DELETE_EVENT,
@@ -29,9 +30,9 @@ export const deleteEvent = (id) => (dispatch) => {
 };
 
 //ADD EVENT
-export const addEvent = (event) => (dispatch) => {
+export const addEvent = (event) => (dispatch, getState) => {
   axios
-    .post("/api/events/", event)
+    .post("/api/events/", event, tokenConfig(getState))
     .then((res) => {
       dispatch({
         type: ADD_EVENT,
@@ -42,9 +43,9 @@ export const addEvent = (event) => (dispatch) => {
 };
 
 // EDIT EVENT
-export const editEvent = (event) => (dispatch) => {
+export const editEvent = (event) => (dispatch, getState) => {
   axios
-    .put(`/api/events/${event.id}/`, event)
+    .put(`/api/events/${event.id}/`, event, tokenConfig(getState))
     .then((res) => {
       dispatch({
         type: EDIT_EVENT,
