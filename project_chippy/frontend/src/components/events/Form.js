@@ -38,6 +38,7 @@ export class Form extends Component {
       complete,
     };
     this.props.addEvent(event);
+    alert(`${event.name} has been successfully created`);
     this.setState({
       name: "",
       description: "",
