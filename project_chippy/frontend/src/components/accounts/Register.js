@@ -29,7 +29,7 @@ export class Register extends Component {
         password,
       };
       this.props.register(newUser);
-      return <Redirect to="/" />;
+      return <Redirect to="/home" />;
     }
   };
 
@@ -37,7 +37,7 @@ export class Register extends Component {
 
   render() {
     if (this.props.isAuthenticated) {
-      return <Redirect to="/" />;
+      return <Redirect to="/home" />;
     }
 
     const { username, email, password, password2 } = this.state;

@@ -12,6 +12,7 @@ import EventList from "../events/ShorthandList";
 import Login from "../accounts/Login";
 import Register from "../accounts/Register";
 import PrivateRoute from "../common/PrivateRoute";
+import LoggedInHomePage from "../events/LoggedInHomePage";
 
 class Main extends Component {
   static propTypes = {
@@ -30,12 +31,12 @@ class Main extends Component {
         <div>
           <Switch>
             <Route exact path="/" component={HomePage} />
+            <PrivateRoute exact path="/home" component={LoggedInHomePage} />
             <Route
               exact
               path="/events"
               render={(props) => <Dashboard {...props} />}
             />
-            } />
             <Route
               exact
               path="/shortlist"

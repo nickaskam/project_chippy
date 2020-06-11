@@ -16,6 +16,10 @@ export class Header extends Component {
     const authLinks = (
       <Fragment>
         <li>
+          {/* Home Page */}
+          <a href="#">Project Chippy</a>
+        </li>
+        <li>
           {/* Link to Register for the app */}
           <Link to="/register">Register</Link>
         </li>
@@ -28,6 +32,10 @@ export class Header extends Component {
 
     const userLinks = (
       <Fragment>
+        <li>
+          {/* Logged in Home page */}
+          <Link to="/home">Home</Link>
+        </li>
         <li>
           {/* Add a new event */}
           <Link to="/form">Add New Event</Link>
@@ -53,10 +61,6 @@ export class Header extends Component {
       <div>
         <nav>
           <ul className="grid-header">
-            <li>
-              {/* Home Page */}
-              <a href="#">Project Chippy</a>
-            </li>
             {isAuthenticated ? userLinks : authLinks}
           </ul>
         </nav>
