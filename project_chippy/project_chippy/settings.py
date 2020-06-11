@@ -86,11 +86,12 @@ WSGI_APPLICATION = 'project_chippy.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'projectchippy',
-        'USER': 'postgres',
-        'PASSWORD': '1234',
-        'HOST': 'localhost'
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'projectchippydb',
+        'USER': 'nick',
+        'PASSWORD': 'ch1ppyp@55w0rD',
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
 
