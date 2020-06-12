@@ -26,7 +26,8 @@ SECRET_KEY = '$25w5vw1t6g*0cv1%oy!eyo!w8)1)6muwnd6_-07)i1gt3^o*7'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['projectchippy.com', '206.81.4.160', 'localhost']
+ALLOWED_HOSTS = ['projectchippy.com', '206.81.4.160',
+                 'localhost', 'www.projectchippy.com']
 
 
 # Application definition
@@ -86,11 +87,12 @@ WSGI_APPLICATION = 'project_chippy.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'projectchippy',
-        'USER': 'postgres',
-        'PASSWORD': '1234',
-        'HOST': 'localhost'
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'projectchippydb',
+        'USER': 'nick',
+        'PASSWORD': 'ch1ppyp@55w0rD',
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
 
