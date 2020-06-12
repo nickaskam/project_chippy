@@ -19,6 +19,12 @@ class LoggedInHomePage extends Component {
       <div>
         <h1>Project Chippy</h1>
         <p>Welcome!</p>
+        <p>
+          Click to add an event: <Link to="/form">Add Event</Link>
+        </p>
+        <p>
+          View your events: <Link to="/events">Your Events</Link>
+        </p>
       </div>
     );
   }
