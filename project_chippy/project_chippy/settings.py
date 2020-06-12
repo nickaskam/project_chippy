@@ -26,7 +26,7 @@ SECRET_KEY = '$25w5vw1t6g*0cv1%oy!eyo!w8)1)6muwnd6_-07)i1gt3^o*7'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['206.81.4.160', 'localhost', 'projectchippy.com']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
