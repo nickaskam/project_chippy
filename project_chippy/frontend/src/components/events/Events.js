@@ -126,7 +126,7 @@ export class Events extends Component {
         </button>
         <button onClick={this.showAllEvents}>Show All Events</button>
         <h2>Events</h2>
-        <div className="grid">
+        <div className="gridList">
           {this.state.events.map((event) => (
             <EventCards key={event.id} event={event} />
           ))}

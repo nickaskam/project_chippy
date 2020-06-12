@@ -72,7 +72,7 @@ export class EventCards extends Component {
 
   render() {
     return (
-      <div>
+      <div className="gridListDiv">
         {/* Overview of event */}
         <h4
           className={this.props.event.complete === "Yes" ? "text-strike" : null}
