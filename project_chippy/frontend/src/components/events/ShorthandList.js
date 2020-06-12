@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import EventCards from "./EventCards";
 import EventFooter from "../layout/EventFooter";
 
@@ -81,7 +81,7 @@ function EventList(props) {
 
   function RenderEvents() {
     return (
-      <Fragment>
+      <div className="container">
         <div className="gridList">
           <div>
             <h2>Past Events</h2>
@@ -105,7 +105,7 @@ function EventList(props) {
           </div>
         </div>
         <EventFooter />
-      </Fragment>
+      </div>
     );
   }
 
