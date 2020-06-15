@@ -11,6 +11,7 @@ export class EventCards extends Component {
     end_time: "",
     category: "WORK",
     complete: "No",
+    isInEditMode: false,
   };
 
   completeEvent = (e) => {
@@ -18,7 +19,7 @@ export class EventCards extends Component {
     const event = {
       id: this.props.event.id,
       name: this.props.event.name,
-      description: this.props.event.name,
+      description: this.props.event.description,
       start_time: this.props.event.start_time,
       end_time: this.props.event.end_time,
       category: this.props.event.category,
@@ -33,11 +34,37 @@ export class EventCards extends Component {
     const event = {
       id: this.props.event.id,
       name: this.props.event.name,
-      description: this.props.event.name,
+      description: this.props.event.description,
       start_time: this.props.event.start_time,
       end_time: this.props.event.end_time,
       category: this.props.event.category,
       complete: "No",
+      created_at: this.props.event.created_at,
+    };
+    this.props.editEvent(event);
+  };
+
+  changeEditMode = () => {
+    this.setState({
+      isInEditMode: !this.state.isInEditMode,
+    });
+  };
+
+  onChange = (e) => this.setState({ [e.target.name]: e.target.value });
+
+  updateValues = (e) => {
+    this.setState({
+      isInEditMode: false,
+    });
+    e.preventDefault();
+    const event = {
+      id: this.props.event.id,
+      name: this.refs.eventName.value,
+      description: this.refs.eventDescription.value,
+      start_time: this.refs.eventStartTime.value,
+      end_time: this.refs.eventEndTime.value,
+      category: this.refs.eventCategory.value,
+      complete: this.props.event.complete,
       created_at: this.props.event.created_at,
     };
     this.props.editEvent(event);
@@ -71,12 +98,79 @@ export class EventCards extends Component {
   });
 
   render() {
+    if (this.state.isInEditMode) {
+      return (
+        <div className="gridListDiv">
+          <form onSubmit={this.updateValues}>
+            <div>
+              <label>Name</label>
+              <input
+                type="text"
+                name="name"
+                defaultValue={this.props.event.name}
+                onChange={this.onChange}
+                ref="eventName"
+              />
+            </div>
+            <div>
+              <label>Description</label>
+              <input
+                type="text"
+                name="description"
+                defaultValue={this.props.event.description}
+                onChange={this.onChange}
+                ref="eventDescription"
+              />
+            </div>
+            <div>
+              <label>Start Time</label>
+              <input
+                type="datetime-local"
+                name="start_time"
+                defaultValue={this.props.event.start_time}
+                onChange={this.onChange}
+                ref="eventStartTime"
+              />
+            </div>
+            <div>
+              <label>End Time</label>
+              <input
+                type="datetime-local"
+                name="end_time"
+                defaultValue={this.props.event.end_time}
+                onChange={this.onChange}
+                ref="eventEndTime"
+              />
+            </div>
+            <div>
+              <label>Category</label>
+              <select
+                name="category"
+                onChange={this.onChange}
+                defaultValue={this.props.event.category}
+                ref="eventCategory"
+              >
+                <option value="WORK">Work</option>
+                <option value="SCHOOL">School</option>
+                <option value="FUN">Fun</option>
+              </select>
+            </div>
+            <div>
+              <button onClick={this.changeEditMode}>X</button>
+              <button type="submit">Save</button>
+            </div>
+          </form>
+        </div>
+      );
+    }
+
     return (
       <div className="gridListDiv">
         {/* Overview of event */}
         <h4
           className={this.props.event.complete === "Yes" ? "text-strike" : null}
         >
+          <button onClick={this.changeEditMode}>Edit</button>
           <span
             className={
               this.props.event.category === "WORK"
@@ -88,7 +182,7 @@ export class EventCards extends Component {
                 : ""
             }
           >
-            {this.props.event.name}
+            &nbsp;&nbsp;{this.props.event.name}
           </span>{" "}
           -{" "}
           {this.dateFormatterDateOnly.format(
