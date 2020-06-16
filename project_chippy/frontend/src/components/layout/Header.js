@@ -17,7 +17,14 @@ export class Header extends Component {
       <Fragment>
         <li>
           {/* Home Page */}
-          <a href="#">Project Chippy</a>
+          <img
+            src={"static/images/logo.png"}
+            alt="Project Chippy"
+            height="30"
+            width="30"
+            href="/"
+          />
+          {/* <a href="#">Project Chippy</a> */}
         </li>
         <li>
           {/* Link to Register for the app */}
@@ -34,7 +41,16 @@ export class Header extends Component {
       <Fragment>
         <li>
           {/* Logged in Home page */}
-          <Link to="/home">Home</Link>
+          <Link to="/home">
+            <img
+              src={"static/images/logo.png"}
+              alt="Project Chippy"
+              height="80"
+              width="80"
+              href="/home"
+            />
+          </Link>
+          {/* <Link to="/home">Home</Link> */}
         </li>
         <li>
           {/* Add a new event */}
