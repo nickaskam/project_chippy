@@ -26,13 +26,13 @@ export class Header extends Component {
             />
           </Link>
         </li>
-        <li className="liHeaderLink">
+        <li>
           {/* Link to Register for the app */}
           <Link to="/register">
             <span className="liHeaderLink">Register</span>
           </Link>
         </li>
-        <li className="liHeaderLink">
+        <li>
           {/* Link to Login into the app */}
           <Link to="/login">
             <span className="liHeaderLink">Login</span>

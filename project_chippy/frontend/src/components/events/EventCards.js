@@ -64,7 +64,7 @@ export class EventCards extends Component {
       start_time: this.refs.eventStartTime.value,
       end_time: this.refs.eventEndTime.value,
       category: this.refs.eventCategory.value,
-      complete: this.props.event.complete,
+      complete: this.refs.eventComplete.value,
       created_at: this.props.event.created_at,
     };
     this.props.editEvent(event);
@@ -153,6 +153,18 @@ export class EventCards extends Component {
                 <option value="WORK">Work</option>
                 <option value="SCHOOL">School</option>
                 <option value="FUN">Fun</option>
+              </select>
+            </div>
+            <div>
+              <label>Complete?</label>
+              <select
+                name="complete"
+                onChange={this.onChange}
+                defaultValue={this.props.event.complete}
+                ref="eventComplete"
+              >
+                <option value="No">No</option>
+                <option value="Yes">Yes</option>
               </select>
             </div>
             <div>
