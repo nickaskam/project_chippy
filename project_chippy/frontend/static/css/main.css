@@ -17,7 +17,6 @@
 .grid-header {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  /* grid-gap: 10px; */
 }
 
 .gridList {
@@ -87,14 +86,14 @@ nav > ul > li {
 }
 
 /* Add a background color on mouse-over */
-nav a:hover {
+.liHeaderLink:hover {
   background-color: #000;
   color: white;
 }
 
 /* Style the current/active link */
-nav a.active {
-  background-color: #4caf50;
+.liHeaderLink {
+  color: blue;
 }
 
 .text-strike {

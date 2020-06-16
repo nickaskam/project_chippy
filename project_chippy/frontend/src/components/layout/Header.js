@@ -17,20 +17,20 @@ export class Header extends Component {
       <Fragment>
         <li>
           {/* Home Page */}
-          <img
-            src={"static/images/logo.png"}
-            alt="Project Chippy"
-            height="30"
-            width="30"
-            href="/"
-          />
-          {/* <a href="#">Project Chippy</a> */}
+          <Link to="/">
+            <img
+              src={"static/images/logo.png"}
+              alt="Project Chippy"
+              height="80"
+              width="80"
+            />
+          </Link>
         </li>
-        <li>
+        <li className="liHeaderLink">
           {/* Link to Register for the app */}
           <Link to="/register">Register</Link>
         </li>
-        <li>
+        <li className="liHeaderLink">
           {/* Link to Login into the app */}
           <Link to="/login">Login</Link>
         </li>
@@ -54,15 +54,21 @@ export class Header extends Component {
         </li>
         <li>
           {/* Add a new event */}
-          <Link to="/form">Add New Event</Link>
+          <Link to="/form">
+            <span className="liHeaderLink">Add New Event</span>
+          </Link>
         </li>
         <li>
           {/* All of the events in detail */}
-          <Link to="/events">Events List</Link>
+          <Link to="/events">
+            <span className="liHeaderLink">Events List</span>
+          </Link>
         </li>
         <li>
           {/* A list of the events only showing the name */}
-          <Link to="/shortlist">Day by Day</Link>
+          <Link to="/shortlist">
+            <span className="liHeaderLink">Day by Day</span>
+          </Link>
         </li>
         <li>
           <span>
