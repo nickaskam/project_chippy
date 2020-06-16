@@ -28,11 +28,15 @@ export class Header extends Component {
         </li>
         <li className="liHeaderLink">
           {/* Link to Register for the app */}
-          <Link to="/register">Register</Link>
+          <Link to="/register">
+            <span className="liHeaderLink">Register</span>
+          </Link>
         </li>
         <li className="liHeaderLink">
           {/* Link to Login into the app */}
-          <Link to="/login">Login</Link>
+          <Link to="/login">
+            <span className="liHeaderLink">Login</span>
+          </Link>
         </li>
       </Fragment>
     );
@@ -50,7 +54,6 @@ export class Header extends Component {
               href="/home"
             />
           </Link>
-          {/* <Link to="/home">Home</Link> */}
         </li>
         <li>
           {/* Add a new event */}
