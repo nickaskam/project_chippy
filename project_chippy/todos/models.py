@@ -8,6 +8,7 @@ class Todos(models.Model):
     CategoryType = models.TextChoices('CategoryType', 'LONGTERM SHORTTERM')
     name = models.CharField(max_length=100)
     complete = models.BooleanField()
+    todoDueDate = models.DateField(blank=True, null=True)
     todotype = models.CharField(
         blank=True, choices=CategoryType.choices, max_length=10)
     todosowner = models.ForeignKey(

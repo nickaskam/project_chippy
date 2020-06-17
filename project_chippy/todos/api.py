@@ -16,4 +16,4 @@ class TodosViewSet(viewsets.ModelViewSet):
         return self.request.user.todos.all()
 
     def perform_create(self, serializer):
-        serializer.save(owner=self.request.user)
+        serializer.save(todosowner=self.request.user)
