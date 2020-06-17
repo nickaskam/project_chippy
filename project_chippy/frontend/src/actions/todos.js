@@ -1,7 +1,7 @@
 import axios from "axios";
 import { tokenConfig } from "./auth";
 
-import { GET_TODOS, ADD_TODO } from "./types";
+import { GET_TODOS, ADD_TODO, DELETE_TODO } from "./types";
 
 // GET TODOS
 export const getTodos = () => (dispatch, getState) => {
@@ -24,6 +24,19 @@ export const addTodo = (todo) => (dispatch, getState) => {
       dispatch({
         type: ADD_TODO,
         payload: res.data,
+      });
+    })
+    .catch((err) => console.log(err));
+};
+
+// DELETE TODO
+export const deleteTodo = (id) => (dispatch, getState) => {
+  axios
+    .delete(`/api/todos/${id}/`, tokenConfig(getState))
+    .then((res) => {
+      dispatch({
+        type: DELETE_TODO,
+        payload: id,
       });
     })
     .catch((err) => console.log(err));

@@ -2,6 +2,7 @@ import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { Redirect } from "react-router-dom";
+import { deleteTodo } from "../../actions/todos";
 
 export class Todos extends Component {
   constructor(props) {
@@ -13,6 +14,7 @@ export class Todos extends Component {
 
   static propTypes = {
     isAuthenticated: PropTypes.bool,
+    deleteTodo: PropTypes.func.isRequired,
   };
 
   componentDidMount() {
@@ -63,7 +65,9 @@ export class Todos extends Component {
                   <button>Edit</button>
                 </td>
                 <td>
-                  <button>Delete</button>
+                  <button onClick={() => this.props.deleteTodo(todo.id)}>
+                    Delete
+                  </button>
                 </td>
               </tr>
             ))}
@@ -79,4 +83,4 @@ const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
 });
 
-export default connect(mapStateToProps)(Todos);
+export default connect(mapStateToProps, { deleteTodo })(Todos);
