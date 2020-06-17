@@ -79,6 +79,12 @@ export class Header extends Component {
           </span>
           <button onClick={this.props.logout}>Logout</button>
         </li>
+        <li>
+          {/* A list of todos */}
+          <Link to="/todos">
+            <span className="liHeaderLink">Todos</span>
+          </Link>
+        </li>
       </Fragment>
     );
 
