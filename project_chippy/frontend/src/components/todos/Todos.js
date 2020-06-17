@@ -40,7 +40,12 @@ export class Todos extends Component {
         <div>
           {this.state.todos.map((todo) => (
             <div key={todo.id}>
-              <h4>{todo.name}</h4>
+              <h4>To Do Name: {todo.name}</h4>
+              <ul>
+                <li>Due Date: {todo.todoDueDate}</li>
+                <li>Type: {todo.todotype}</li>
+                <li>Created At: {todo.created_at}</li>
+              </ul>
             </div>
           ))}
         </div>
