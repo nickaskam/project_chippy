@@ -17,6 +17,14 @@ export class Todos extends Component {
     deleteTodo: PropTypes.func.isRequired,
   };
 
+  dateFormatter = new Intl.DateTimeFormat("en-US", {
+    year: "numeric",
+    month: "short",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+
   componentDidMount() {
     this.setState({
       todos: this.props.todos,
@@ -60,7 +68,9 @@ export class Todos extends Component {
                 <td>{todo.todoDueDate}</td>
                 <td>{todo.complete.toString()}</td>
                 <td>{todo.todotype}</td>
-                <td>{todo.created_at}</td>
+                <td>
+                  {this.dateFormatter.format(Date.parse(todo.created_at))}
+                </td>
                 <td>
                   <button>Edit</button>
                 </td>

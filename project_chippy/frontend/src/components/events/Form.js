@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { addEvent } from "../../actions/events";
@@ -59,7 +59,7 @@ export class Form extends Component {
       complete,
     } = this.state;
     return (
-      <Fragment>
+      <div className="container">
         <div>
           <h2>Add Event Form</h2>
         </div>
@@ -121,7 +121,7 @@ export class Form extends Component {
             </div>
           </form>
         </div>
-      </Fragment>
+      </div>
     );
   }
 }

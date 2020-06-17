@@ -37,7 +37,7 @@ export class CreateTodoForm extends Component {
   };
 
   render() {
-    const { name, todoDueDate, todotype, complete } = this.state;
+    const { name, todoDueDate, todotype } = this.state;
     return (
       <div>
         <h2>Add Todo</h2>
