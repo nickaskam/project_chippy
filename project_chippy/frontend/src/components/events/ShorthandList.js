@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import EventCards from "./EventCards";
 import EventFooter from "../layout/EventFooter";
 
