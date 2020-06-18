@@ -45,7 +45,7 @@ class Main extends Component {
             <Route
               exact
               path="/shortlist"
-              render={() => <EventList events={this.props.events} />}
+              render={(props) => <EventList {...props} />}
             />
             <PrivateRoute exact path="/form" component={Form} />
             <Route exact path="/register" component={Register} />
