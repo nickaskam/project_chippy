@@ -29,10 +29,9 @@ export default function (state = initialState, action) {
     case EDIT_EVENT:
       return {
         ...state,
-        events: [
-          ...state.events.filter((event) => event.id !== action.payload.id),
-          action.payload,
-        ],
+        events: state.events.map((event) =>
+          event.id === action.payload.id ? action.payload : event
+        ),
       };
     default:
       return state;
