@@ -2,43 +2,27 @@ import React, { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { logout } from "../../actions/auth";
 
 export class Header extends Component {
   static propTypes = {
     auth: PropTypes.object.isRequired,
-    logout: PropTypes.func.isRequired,
   };
 
   render() {
-    const { isAuthenticated, user } = this.props.auth;
+    const { isAuthenticated } = this.props.auth;
 
     const authLinks = (
-      <Fragment>
-        <li>
-          {/* Home Page */}
-          <Link to="/">
-            <img
-              src={"static/images/logo.png"}
-              alt="Project Chippy"
-              height="80"
-              width="80"
-            />
-          </Link>
-        </li>
-        <li>
-          {/* Link to Register for the app */}
-          <Link to="/register">
-            <span className="liHeaderLink">Register</span>
-          </Link>
-        </li>
-        <li>
-          {/* Link to Login into the app */}
-          <Link to="/login">
-            <span className="liHeaderLink">Login</span>
-          </Link>
-        </li>
-      </Fragment>
+      <li>
+        {/* Home Page */}
+        <Link to="/">
+          <img
+            src={"static/images/logo.png"}
+            alt="Project Chippy"
+            height="150"
+            width="150"
+          />
+        </Link>
+      </li>
     );
 
     const userLinks = (
@@ -49,47 +33,51 @@ export class Header extends Component {
             <img
               src={"static/images/logo.png"}
               alt="Project Chippy"
-              height="80"
-              width="80"
+              height="150"
+              width="150"
               href="/home"
             />
           </Link>
         </li>
-        <li>
-          {/* Add a new event */}
-          <Link to="/form">
-            <span className="liHeaderLink">Add New Event</span>
-          </Link>
+        <li className="headerName">
+          <strong>Events</strong>
         </li>
-        <li>
-          {/* All of the events in detail */}
-          <Link to="/events">
-            <span className="liHeaderLink">Events List</span>
-          </Link>
+        <ul>
+          <li>
+            {/* Add a new event */}
+            <Link to="/form">
+              <span className="liHeaderLink">Add New Event</span>
+            </Link>
+          </li>
+          <li>
+            {/* All of the events in detail */}
+            <Link to="/events">
+              <span className="liHeaderLink">Events List</span>
+            </Link>
+          </li>
+          <li>
+            {/* A list of the events only showing the name */}
+            <Link to="/shortlist">
+              <span className="liHeaderLink">Day by Day</span>
+            </Link>
+          </li>
+        </ul>
+        <li className="headerName">
+          <strong>Todos</strong>
         </li>
-        <li>
-          {/* A list of the events only showing the name */}
-          <Link to="/shortlist">
-            <span className="liHeaderLink">Day by Day</span>
-          </Link>
-        </li>
-        <li>
-          <span>
-            <strong>{user ? `Welcome ${user.username} ` : ""}</strong>
-          </span>
-          <button onClick={this.props.logout}>Logout</button>
-        </li>
-        <li>
-          {/* A list of todos */}
-          <Link to="/todos">
-            <span className="liHeaderLink">Todos</span>
-          </Link>
-        </li>
+        <ul>
+          <li>
+            {/* A list of todos */}
+            <Link to="/todos">
+              <span className="liHeaderLink">Todos</span>
+            </Link>
+          </li>
+        </ul>
       </Fragment>
     );
 
     return (
-      <div>
+      <div className="headerComponent">
         <nav>
           <ul className="grid-header">
             {isAuthenticated ? userLinks : authLinks}
@@ -104,4 +92,4 @@ const mapStateToProps = (state) => ({
   auth: state.auth,
 });
 
-export default connect(mapStateToProps, { logout })(Header);
+export default connect(mapStateToProps)(Header);

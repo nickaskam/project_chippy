@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Route, Switch, Redirect } from "react-router-dom";
 import PropTypes from "prop-types";
@@ -15,6 +15,7 @@ import Login from "../accounts/Login";
 import Register from "../accounts/Register";
 import PrivateRoute from "../common/PrivateRoute";
 import LoggedInHomePage from "../events/LoggedInHomePage";
+import AccountHeader from "./AccountHeader";
 
 class Main extends Component {
   static propTypes = {
@@ -31,9 +32,10 @@ class Main extends Component {
 
   render() {
     return (
-      <Fragment>
+      <div className="mainPageContainer">
         <Header />
-        <div>
+        <div className="mainComponent">
+          <AccountHeader />
           <Switch>
             <Route exact path="/" component={HomePage} />
             <PrivateRoute exact path="/home" component={LoggedInHomePage} />
@@ -58,7 +60,7 @@ class Main extends Component {
             <Redirect to="/" />
           </Switch>
         </div>
-      </Fragment>
+      </div>
     );
   }
 }
