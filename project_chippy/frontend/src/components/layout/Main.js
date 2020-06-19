@@ -16,6 +16,7 @@ import Register from "../accounts/Register";
 import PrivateRoute from "../common/PrivateRoute";
 import LoggedInHomePage from "../events/LoggedInHomePage";
 import AccountHeader from "./AccountHeader";
+import Today from "../dashboards/Today";
 
 class Main extends Component {
   static propTypes = {
@@ -56,6 +57,11 @@ class Main extends Component {
               exact
               path="/todos"
               render={(props) => <TodosDashboard {...props} />}
+            />
+            <Route
+              exact
+              path="/today"
+              render={(props) => <Today {...props} />}
             />
             <Redirect to="/" />
           </Switch>

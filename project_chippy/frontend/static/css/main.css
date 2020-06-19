@@ -173,3 +173,31 @@ button[type="submit"] {
   cursor: pointer;
   width: 100%;
 }
+
+.todayDashboardContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas:
+    "header header"
+    "events todos"
+    "footer footer";
+}
+
+.todayEventsTitleContainer {
+  grid-area: header;
+  padding: 3%;
+}
+
+.todayEventsContainer {
+  grid-area: events;
+  padding: 3%;
+}
+
+.todayTodosContainer {
+  grid-area: todos;
+  padding: 3%;
+}
+
+.todaysEventsFooterContainer {
+  grid-area: footer;
+}

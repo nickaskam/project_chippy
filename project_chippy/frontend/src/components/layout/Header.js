@@ -40,6 +40,17 @@ export class Header extends Component {
           </Link>
         </li>
         <li className="headerName">
+          <strong>Dashboards</strong>
+        </li>
+        <ul>
+          <li>
+            {/* Add a new event */}
+            <Link to="/today">
+              <span className="liHeaderLink">Today's Activities</span>
+            </Link>
+          </li>
+        </ul>
+        <li className="headerName">
           <strong>Events</strong>
         </li>
         <ul>
