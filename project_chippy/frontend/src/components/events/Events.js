@@ -117,6 +117,7 @@ export class Events extends Component {
 
     return (
       <Fragment>
+        <h2>Events</h2>
         <button onClick={this.sortByDateAsc}>Asc Date</button>
         <button onClick={this.sortByDateDesc}>Desc Date</button>
         <button onClick={this.showWorkEvents}>Show Work Events</button>
@@ -125,7 +126,7 @@ export class Events extends Component {
           Show Uncomplete Events
         </button>
         <button onClick={this.showAllEvents}>Show All Events</button>
-        <h2>Events</h2>
+
         <div className="gridList">
           {this.state.events.map((event) => (
             <EventCards key={event.id} event={event} />

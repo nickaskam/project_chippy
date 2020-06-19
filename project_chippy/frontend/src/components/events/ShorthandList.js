@@ -56,6 +56,7 @@ export class EventList extends Component {
 
     return (
       <div className="container">
+        <h3>Day By Day Events View</h3>
         <button onClick={this.showUncompletedEvents}>
           Show Uncomplete Events
         </button>
