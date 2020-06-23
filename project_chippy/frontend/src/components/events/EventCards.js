@@ -127,7 +127,9 @@ export class EventCards extends Component {
               <input
                 type="datetime-local"
                 name="start_time"
-                defaultValue={this.props.event.start_time}
+                defaultValue={new Date(
+                  this.props.event.start_time
+                ).toISOString()}
                 onChange={this.onChange}
                 ref="eventStartTime"
               />

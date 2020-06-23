@@ -30,7 +30,7 @@ export default function (state = initialState, action) {
       return {
         ...state,
         events: state.events.map((event) =>
-          event.id === action.payload.id ? action.payload : event
+          event.id !== action.payload.id ? event : action.payload
         ),
       };
     default:
