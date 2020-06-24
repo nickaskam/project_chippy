@@ -12,9 +12,6 @@ function EventFooter() {
           <li className="categoryThree">School</li>
         </ul>
       </div>
-      <div>
-        <p>Project Chippy is a hobby project created by Nick Askam</p>
-      </div>
     </Fragment>
   );
 }

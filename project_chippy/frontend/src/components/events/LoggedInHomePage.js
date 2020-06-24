@@ -21,7 +21,7 @@ class LoggedInHomePage extends Component {
 
   render() {
     return (
-      <div>
+      <div className="container">
         <h1>Project Chippy</h1>
         <p>Welcome!</p>
         <p>

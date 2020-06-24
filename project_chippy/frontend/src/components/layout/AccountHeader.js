@@ -44,12 +44,9 @@ export class AccountHeader extends Component {
     );
 
     return (
-      <Fragment>
-        <div className="accountHeaderComponent">
-          <ul className="topNav">{isAuthenticated ? userLinks : authLinks}</ul>
-        </div>
-        <hr />
-      </Fragment>
+      <div className="accountHeaderComponent">
+        <ul className="topNav">{isAuthenticated ? userLinks : authLinks}</ul>
+      </div>
     );
   }
 }

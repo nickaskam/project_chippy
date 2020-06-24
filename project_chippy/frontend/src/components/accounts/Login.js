@@ -30,7 +30,7 @@ export class Login extends Component {
     const { username, password } = this.state;
 
     return (
-      <div>
+      <div className="container">
         <h2>Login</h2>
         <form onSubmit={this.onSubmit}>
           <div>
