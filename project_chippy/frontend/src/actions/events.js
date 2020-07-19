@@ -1,7 +1,13 @@
 import axios from "axios";
 import { tokenConfig } from "./auth";
 
-import { GET_EVENTS, DELETE_EVENT, ADD_EVENT, EDIT_EVENT } from "./types";
+import {
+  GET_EVENTS,
+  DELETE_EVENT,
+  ADD_EVENT,
+  EDIT_EVENT,
+  DELETE_EDIT_CLEAR,
+} from "./types";
 
 // GET EVENTS
 export const getEvents = () => (dispatch, getState) => {
@@ -53,4 +59,10 @@ export const editEvent = (event) => (dispatch, getState) => {
       });
     })
     .catch((err) => console.log(err));
+};
+
+export const deleteEditModeClear = () => (dispatch) => {
+  dispatch({
+    type: DELETE_EDIT_CLEAR,
+  });
 };

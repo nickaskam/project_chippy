@@ -4,22 +4,29 @@ import EventCards from "./EventCards";
 import EventFooter from "../layout/EventFooter";
 import PropTypes from "prop-types";
 import { Redirect } from "react-router-dom";
+import { deleteEditModeClear } from "../../actions/events";
 
 export class Events extends Component {
   constructor(props) {
     super(props);
     this.state = {
       events: [],
+      categorySort: false,
+      dateSort: false,
+      completeSort: false,
     };
     this.sortByDateAsc = this.sortByDateAsc.bind(this);
     this.sortByDateDesc = this.sortByDateDesc.bind(this);
     this.showWorkEvents = this.showWorkEvents.bind(this);
     this.showTodaysEvents = this.showTodaysEvents.bind(this);
     this.showAllEvents = this.showAllEvents.bind(this);
+    this.checkActiveFilters = this.checkActiveFilters.bind(this);
   }
 
   static propTypes = {
     isAuthenticated: PropTypes.bool,
+    deleteEditMode: PropTypes.bool,
+    deleteEditModeClear: PropTypes.func.isRequired,
   };
 
   componentDidMount() {
@@ -70,7 +77,7 @@ export class Events extends Component {
       return false;
     });
 
-    this.setState({ events: filteredEvents });
+    this.setState({ events: filteredEvents, categorySort: true });
   };
 
   showUncompleteEvents = () => {
@@ -81,7 +88,7 @@ export class Events extends Component {
       return false;
     });
 
-    this.setState({ events: filteredEvents });
+    this.setState({ events: filteredEvents, completeSort: true });
   };
 
   showTodaysEvents = () => {
@@ -103,16 +110,34 @@ export class Events extends Component {
       return false;
     });
 
-    this.setState({ events: filteredEvents });
+    this.setState({ events: filteredEvents, dateSort: true });
+  };
+
+  // When an event changes, confirm that
+  checkActiveFilters = () => {
+    console.log("testing function");
+    // this.props.deleteEditModeClear();
   };
 
   showAllEvents = () => {
-    this.setState({ events: this.props.events });
+    this.setState({
+      events: this.props.events,
+      categorySort: false,
+      dateSort: false,
+      completeSort: false,
+    });
   };
 
   render() {
     if (!this.props.isAuthenticated) {
       return <Redirect to="/" />;
+    }
+
+    // not setting back to false
+    if (this.props.deleteEditMode) {
+      {
+        this.checkActiveFilters();
+      }
     }
 
     return (
@@ -141,6 +166,7 @@ export class Events extends Component {
 const mapStateToProps = (state) => ({
   events: state.events.events,
   isAuthenticated: state.auth.isAuthenticated,
+  deleteEditMode: state.events.deleteEditMode,
 });
 
-export default connect(mapStateToProps)(Events);
+export default connect(mapStateToProps, { deleteEditModeClear })(Events);
