@@ -19,7 +19,7 @@ export class Today extends Component {
         <div className="todayEventsContainer">
           <h3>Events</h3>
           <hr />
-          <h4>Quick Add</h4>
+          {/* <h4>Quick Add</h4> */}
           <h4>Today's Events</h4>
           <div>
             {this.props.events
@@ -50,8 +50,33 @@ export class Today extends Component {
         <div className="todayTodosContainer">
           <h3>Todos</h3>
           <hr />
-          <h4>Quick Add</h4>
+          {/* <h4>Quick Add</h4> */}
           <h4>Today's Todos</h4>
+          <div>
+            {this.props.events
+              .slice()
+              .filter((event) => {
+                if (
+                  new Date(event.start_time) >
+                    new Date().setHours(0, 0, 0, 0) &&
+                  new Date(event.start_time) < new Date().setHours(24, 0, 0, 0)
+                ) {
+                  return true;
+                }
+                return false;
+              })
+              .sort((a, b) => {
+                if (a.start_time > b.start_time) {
+                  return 1;
+                } else if (a.start_time < b.start_time) {
+                  return -1;
+                }
+                return 0;
+              })
+              .map((event) => (
+                <EventCards key={event.id} event={event} />
+              ))}
+          </div>
         </div>
         <div className="todaysEventsFooterContainer">
           <EventFooter />
