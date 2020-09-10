@@ -2,6 +2,7 @@ import { GET_TODOS, ADD_TODO, DELETE_TODO } from "../actions/types.js";
 
 const initialState = {
   todos: [],
+  deleteEditMode = false,
 };
 
 export default function (state = initialState, action) {
@@ -20,6 +21,14 @@ export default function (state = initialState, action) {
       return {
         ...state,
         todos: state.todos.filter((todo) => todo.id !== action.payload),
+      };
+    case EDIT_TODO:
+      return {
+        ...state,
+        todos: state.events.map((todo) =>
+          todo.id !== action.payload.id ? todo : action.payload
+        ),
+        deleteEditMode: true,
       };
     default:
       return state;
